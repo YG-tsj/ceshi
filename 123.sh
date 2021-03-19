@@ -2,13 +2,13 @@
 
 apt update && apt install curl sudo lsb-release iptables -y
 
- if grep -q -E -i "debian" /etc/issue; then
+if grep -q -E -i "debian" /etc/issue; then
 echo "deb http://deb.debian.org/debian $(lsb_release -sc)-backports main" | sudo tee /etc/apt/sources.list.d/backports.list
 apt update
 
 elif grep -q -E -i "ubuntu" /etc/issue; then
 
- else 
+else 
 	echo -e "只支持Ubuntu20.04与Debain10!"
 	exit 0
 
