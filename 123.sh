@@ -1,7 +1,6 @@
 #!/bin/bash
 
-if
-elif grep -q -E -i "debian" /etc/issue; then
+if grep -q -E -i "debian" /etc/issue; then
 apt update && apt install curl sudo lsb-release iptables -y
 echo "deb http://deb.debian.org/debian $(lsb_release -sc)-backports main" | sudo tee /etc/apt/sources.list.d/backports.list
 apt update
@@ -23,7 +22,6 @@ wgcf generate
 
  else 
 	echo -e "I don't know this operating system!"
-	cd /root/ && rm -rf /root/warp/ /root/warp*
 	exit 0
 
 fi
