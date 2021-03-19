@@ -20,9 +20,10 @@ curl -fsSL git.io/wgcf.sh | sudo bash
 echo | wgcf register
 wgcf generate
 
-else 
-   echo -e "MUST Ubuntu20.04 and Debain10"
-exit 0
+ else 
+	echo -e "I don't know this operating system!"
+	cd /root/ && rm -rf /root/warp/ /root/warp*
+	exit 0
 
 fi
 
