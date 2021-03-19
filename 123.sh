@@ -1,6 +1,7 @@
 #!/bin/bash
 
-if grep -q -E -i "debian" /etc/issue; then
+if
+elif grep -q -E -i "debian" /etc/issue; then
 apt update && apt install curl sudo lsb-release iptables -y
 echo "deb http://deb.debian.org/debian $(lsb_release -sc)-backports main" | sudo tee /etc/apt/sources.list.d/backports.list
 apt update
