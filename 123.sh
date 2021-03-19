@@ -8,10 +8,8 @@ apt update
 
 elif grep -q -E -i "ubuntu" /etc/issue; then
 
-else 
-	echo -e "MUST Ubuntu20.04 and Debain10"
-	cd /root/ && rm -rf /root/warp/ /root/warp*
-	exit 0
+else echo -e "MUST Ubuntu20.04 and Debain10"
+exit 0
 
 fi
 
