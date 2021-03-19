@@ -7,6 +7,7 @@ echo "deb http://deb.debian.org/debian $(lsb_release -sc)-backports main" | sudo
 apt update
 
 elif grep -q -E -i "ubuntu" /etc/issue; then
+apt update
 
 else echo -e "MUST Ubuntu20.04 and Debain10"
 exit 0
