@@ -1,8 +1,7 @@
 #!/bin/bash
 
-apt update && apt install curl sudo lsb-release iptables -y
-
 if grep -q -E -i "debian" /etc/issue; then
+apt update && apt install curl sudo lsb-release iptables -y
 echo "deb http://deb.debian.org/debian $(lsb_release -sc)-backports main" | sudo tee /etc/apt/sources.list.d/backports.list
 apt update
 apt install net-tools iproute2 openresolv dnsutils -y
@@ -13,6 +12,7 @@ echo | wgcf register
 wgcf generate
 
 elif grep -q -E -i "ubuntu" /etc/issue; then
+apt update && apt install curl sudo lsb-release iptables -y
 apt install net-tools iproute2 openresolv dnsutils -y
 apt install wireguard-tools --no-install-recommends
 curl -fsSL git.io/wireguard-go.sh | sudo bash
