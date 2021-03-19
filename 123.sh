@@ -13,6 +13,8 @@ wgcf generate
 
 elif grep -q -E -i "ubuntu" /etc/issue; then
 apt update && apt install curl sudo lsb-release iptables -y
+add-apt-repository ppa:wireguard/wireguard
+apt update
 apt install net-tools iproute2 openresolv dnsutils -y
 apt install wireguard-tools --no-install-recommends
 curl -fsSL git.io/wireguard-go.sh | sudo bash
