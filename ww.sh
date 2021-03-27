@@ -40,5 +40,4 @@ systemctl enable wg-quick@wgcf
 echo 'precedence  ::ffff:0:0/96   100' | tee -a /etc/gai.conf
 
 # 结果提示
-ip a
-echo -e "wg"
+echo wg
