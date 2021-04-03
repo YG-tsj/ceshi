@@ -18,5 +18,4 @@ systemctl enable wg-quick@wgcf
 systemctl start wg-quick@wgcf
 rm -f 11* wgcf* wireguard-go*
 grep -qE '^[ ]*label[ ]*2002::/16[ ]*2' /etc/gai.conf || echo 'label 2002::/16   2' | sudo tee -a /etc/gai.conf
-echo -e "检测是否优先启动Warp IPV4地址：如果下方显示为8.2X……开头的IPV4地址，就说明成功啦！……如果是2a02开头的IPV6地址，那就再重新运行脚本吧"
 curl ip.p3terx.com
