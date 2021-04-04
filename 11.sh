@@ -3,18 +3,23 @@ echo "deb http://deb.debian.org/debian $(lsb_release -sc)-backports main" | sudo
 apt update
 apt install net-tools iproute2 openresolv dnsutils -y
 apt install wireguard-tools --no-install-recommends
-curl -fsSL git.io/wgcf.sh | sudo bash
-curl -fsSL git.io/wireguard-go.sh | sudo bash
+wget https://bitbucket.org/ygtsj/euserv-warp/raw/8cccfd4ba639a5fa3a784e1ae37efb30e58310e4/wgcf
+wget https://bitbucket.org/ygtsj/euserv-warp/raw/8cccfd4ba639a5fa3a784e1ae37efb30e58310e4/wireguard-go
 cp wireguard-go /usr/bin
 cp wgcf /usr/local/bin/wgcf
 chmod +x /usr/local/bin/wgcf
 chmod +x /usr/bin/wireguard-go
 echo | wgcf register
 wgcf generate
+echo "请输入要本地IP 例：202a...../128 --->"
+read -r -p "域名:" ip/128
+sed -i '7 s/^/PostUp = ip -6 rule add from ${ip/128} table main\n/' wgcf-profile.conf
+sed -i '8 s/^/PostDown = ip -6 rule delete from ${ip/128} table main\n/' wgcf-profile.conf
 sed -i 's/engage.cloudflareclient.com/2606:4700:d0::a29f:c001/g' wgcf-profile.conf
 cp wgcf-profile.conf /etc/wireguard/wgcf.conf
 systemctl enable wg-quick@wgcf
 systemctl start wg-quick@wgcf
 rm -f 11* wgcf* wireguard-go*
 grep -qE '^[ ]*label[ ]*2002::/16[ ]*2' /etc/gai.conf || echo 'label 2002::/16   2' | sudo tee -a /etc/gai.conf
-curl ip.p3terx.com
+curl -6 ip.p3terx.com
+curl -4 ip.p3terx.com
