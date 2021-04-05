@@ -16,7 +16,7 @@ echo | read -p "域名:" eu6
 echo "$eu6"
 sed -i "5 s/^/PostUp = ip -6 rule add from 111 table main\n/" wgcf-profile.conf
 sed -i '6 s/^/PostDown = ip -6 rule delete from 111 table main\n/' wgcf-profile.conf
-sed -n "s/111/$(eu6)/g" wgcf-profile.conf
+sed -n "s/111/$($eu6)/g" wgcf-profile.conf
 sed -i 's/engage.cloudflareclient.com/2606:4700:d0::a29f:c001/g' wgcf-profile.conf
 cp wgcf-profile.conf /etc/wireguard/wgcf.conf
 systemctl enable wg-quick@wgcf
