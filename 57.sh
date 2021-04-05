@@ -12,9 +12,11 @@ chmod +x /usr/bin/wireguard-go
 echo | wgcf register
 wgcf generate
 echo "请输入要本地IP 例：202a...../128 --->"
-read -p "域名:" ip
-sed -i '7 s/^/PostUp = ip -6 rule add from $ip table main\n/' wgcf-profile.conf
-sed -i '8 s/^/PostDown = ip -6 rule delete from $ip table main\n/' wgcf-profile.conf
+read -p "域名:" eu6
+echo "$eu6"
+sed -i "5 s/^/PostUp = ip -6 rule add from 111 table main\n/" wgcf-profile.conf
+sed -i '6 s/^/PostDown = ip -6 rule delete from 111 table main\n/' wgcf-profile.conf
+sed -n "s/111/$(eu6)/g" wgcf-profile.conf
 sed -i 's/engage.cloudflareclient.com/2606:4700:d0::a29f:c001/g' wgcf-profile.conf
 cp wgcf-profile.conf /etc/wireguard/wgcf.conf
 systemctl enable wg-quick@wgcf
@@ -22,3 +24,4 @@ systemctl start wg-quick@wgcf
 grep -qE '^[ ]*label[ ]*2002::/16[ ]*2' /etc/gai.conf || echo 'label 2002::/16   2' | sudo tee -a /etc/gai.conf
 curl -6 ip.p3terx.com
 curl -4 ip.p3terx.com
+
