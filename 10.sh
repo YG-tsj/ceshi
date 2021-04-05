@@ -1,5 +1,4 @@
 #!/bin/bash
-echo -n "please input your name:"
-read name
+read -p "please input your name:" name
 echo "welcome !!! $name"
 exit 0
