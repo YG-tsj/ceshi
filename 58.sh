@@ -12,7 +12,7 @@ chmod +x /usr/bin/wireguard-go
 echo | wgcf register
 wgcf generate
 echo "请输入要本地IP 例：202a...../128 --->"
-read -p "域名:" eu6
+echo | read -p "域名:" eu6
 echo "$eu6"
 sed -i "5 s/^/PostUp = ip -6 rule add from 111 table main\n/" wgcf-profile.conf
 sed -i '6 s/^/PostDown = ip -6 rule delete from 111 table main\n/' wgcf-profile.conf
