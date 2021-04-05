@@ -12,8 +12,8 @@ chmod +x /usr/bin/wireguard-go
 echo | wgcf register
 wgcf generate
 echo "请输入要本地IP 例：202a...../128 --->"
-read -r -p "域名:" ip/128
-sed -i '7 s/^/PostUp = ip -6 rule add from ${ip/128} table main\n/' wgcf-profile.conf
+read -r -p "域名:" ipp
+sed -i '7 s/^/PostUp = ip -6 rule add from ${ipp} table main\n/' wgcf-profile.conf
 sed -i '8 s/^/PostDown = ip -6 rule delete from ${ip/128} table main\n/' wgcf-profile.conf
 sed -i 's/engage.cloudflareclient.com/2606:4700:d0::a29f:c001/g' wgcf-profile.conf
 cp wgcf-profile.conf /etc/wireguard/wgcf.conf
