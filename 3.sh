@@ -1,4 +1,4 @@
 #!/bin/bash
 
-read -p "域名:" eu6
+read -rp "域名:" eu6
 echo $eu6
