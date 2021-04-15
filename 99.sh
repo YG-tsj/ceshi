@@ -3,21 +3,19 @@ echo "deb http://deb.debian.org/debian $(lsb_release -sc)-backports main" | sudo
 apt update
 apt install net-tools iproute2 openresolv dnsutils -y
 apt install wireguard-tools --no-install-recommends
-wget https://bitbucket.org/ygtsj/euserv-warp/raw/8cccfd4ba639a5fa3a784e1ae37efb30e58310e4/wgcf
-wget https://bitbucket.org/ygtsj/euserv-warp/raw/8cccfd4ba639a5fa3a784e1ae37efb30e58310e4/wireguard-go
+wget -N -6 https://cdn.jsdelivr.net/gh/YG-tsj/EUserv-addv4-warp/wgcf
+wget -N -6 https://cdn.jsdelivr.net/gh/YG-tsj/EUserv-addv4-warp/wireguard-go
 cp wireguard-go /usr/bin
 cp wgcf /usr/local/bin/wgcf
 chmod +x /usr/local/bin/wgcf
 chmod +x /usr/bin/wireguard-go
 echo | wgcf register
 wgcf generate
+sed -i "5 s/^/PostUp = ip -6 rule add from $eu6 table main\n/" wgcf-profile.conf
+sed -i "6 s/^/PostDown = ip -6 rule delete from $eu6 table main\n/" wgcf-profile.conf
+sed -i 's/engage.cloudflareclient.com/2606:4700:d0::a29f:c001/g' wgcf-profile.conf
 echo "请输入要本地IP 例：202a...../128 --->"
 read -p "域名:" eu6
-echo $eu6
-sed -i '5 s/^/PostUp = ip -6 rule add from eu6 table main\n/' wgcf-profile.conf
-sed -i '6 s/^/PostDown = ip -6 rule delete from eu6 table main\n/' wgcf-profile.conf
-sed -i "s/eu6/${eu6}/g" wgcf-profile.conf
-sed -i 's/engage.cloudflareclient.com/2606:4700:d0::a29f:c001/g' wgcf-profile.conf
 cp wgcf-profile.conf /etc/wireguard/wgcf.conf
 systemctl enable wg-quick@wgcf
 systemctl start wg-quick@wgcf
