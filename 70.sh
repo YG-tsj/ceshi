@@ -1,7 +1,6 @@
 echo -e "\033[1;36m 请 注 意！！！甬 哥 的 脚 本 仅 支 持 Ubuntu 与 Debain 系 统！！！本 脚 本 双 栈 Warp 接 管 IPV4 与 IPV6！！！ \033[0m"
-apt update && apt install curl sudo lsb-release iptables -y
+apt install curl sudo lsb-release iptables -y
 echo "deb http://deb.debian.org/debian $(lsb_release -sc)-backports main" | sudo tee /etc/apt/sources.list.d/backports.list
-apt update
 apt install net-tools iproute2 openresolv dnsutils -y
 apt install wireguard-tools --no-install-recommends
 wget -N -6 https://cdn.jsdelivr.net/gh/YG-tsj/EUserv-addv4-warp/wgcf
