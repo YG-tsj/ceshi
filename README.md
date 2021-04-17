@@ -6,6 +6,8 @@ rm -rf /etc/iptables && reboot
 apt-get install jq -y && bash <(curl -sSL https://raw.githubusercontent.com/YG-tsj/ceshi/main/Netflix1.sh)
 ```
 
+wget https://cdn.jsdelivr.net/gh/YG-tsj/ceshi/34.sh && chmod +x 34.sh && ./34.sh
+
 ```
 wget https://cdn.jsdelivr.net/gh/YG-tsj/ceshi/90.sh && chmod +x 90.sh && ./90.sh
 ```
