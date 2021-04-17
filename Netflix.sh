@@ -1,5 +1,4 @@
 #!/bin/bash
-shell_version="1.3.1";
 UA_Browser="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.87 Safari/537.36";
 UA_Dalvik="Dalvik/2.1.0 (Linux; U; Android 9; ALP-AL00 Build/HUAWEIALP-AL00)";
 Font_Black="\033[30m";
@@ -18,7 +17,6 @@ export LC_ALL="en_US";
 clear;
 echo -e "${Font_Red}脚本来源于互联网，所有权归作者${Font_Suffix}";
 echo -e "${Font_Red}本工具测试结果仅供参考，请以实际使用为准${Font_Suffix}";
-echo -e " ** Version: v${shell_version}";
 
 function PharseJSON() {
     # 使用方法: PharseJSON "要解析的原JSON文本" "要解析的键值"
@@ -66,28 +64,8 @@ function MediaUnlockTest_Netflix() {
     return;
 }
 
-function MediaUnlockTest_YouTube_Region() {
-    echo -n -e " YouTube Region:\t\t\t->\c";
-    local result=`curl --user-agent "${UA_Browser}" -${1} -sSL "https://www.youtube.com/" 2>&1`;
-    
-    if [[ "$result" == "curl"* ]];then
-        echo -n -e "\r YouTube Region:\t\t\t${Font_Red}Failed (Network Connection)${Font_Suffix}\n";
-        return;
-    fi
-    
-    local result=`curl --user-agent "${UA_Browser}" -${1} -sL "https://www.youtube.com/red" | sed 's/,/\n/g' | grep "countryCode" | cut -d '"' -f4`;
-    if [ -n "$result" ]; then
-        echo -n -e "\r YouTube Region:\t\t\t${Font_Green}${result}${Font_Suffix}\n";
-        return;
-    fi
-    
-    echo -n -e "\r YouTube Region:\t\t\t${Font_Red}No${Font_Suffix}\n";
-    return;
-}
-
 function MediaUnlockTest() {
     MediaUnlockTest_Netflix ${1};
-    MediaUnlockTest_YouTube_Region ${1};
 }
 
 curl -V > /dev/null 2>&1;
