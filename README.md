@@ -6,3 +6,7 @@ apt-get install jq -y && bash <(curl -sSL https://raw.githubusercontent.com/YG-t
 ```
 wget https://cdn.jsdelivr.net/gh/YG-tsj/ceshi/90.sh && chmod +x 90.sh && ./90.sh
 ```
+
+```
+bash <(curl -sSL https://raw.githubusercontent.com/YG-tsj/ceshi/main/123.sh）
+```
