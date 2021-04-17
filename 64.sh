@@ -15,7 +15,7 @@ wgcf generate
 sed -i '5 s/^/PostUp = ip -6 rule add from eu6 table main\n/' wgcf-profile.conf
 sed -i '6 s/^/PostDown = ip -6 rule delete from eu6 table main\n/' wgcf-profile.conf
 echo -e "\033[1;31m 请复制德鸡EUserv本地IP+/128，可在EUserv后台（Main IPv6-Address）查看，注意在非中文环境下复制，例：2a02:…………/128 \033[0m"
-read -p "\033[1;35m 粘贴（IPV6+/128）: \033[0m" eu6
+read -p "粘贴（IPV6+/128）:" eu6
 sed -i "s#eu6#$eu6#g" wgcf-profile.conf
 sed -i 's/engage.cloudflareclient.com/2606:4700:d0::a29f:c001/g' wgcf-profile.conf
 cp wgcf-account.toml /etc/wireguard/wgcf-account.toml
