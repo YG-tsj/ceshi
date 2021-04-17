@@ -8,6 +8,10 @@ wget https://cdn.jsdelivr.net/gh/YG-tsj/ceshi/90.sh && chmod +x 90.sh && ./90.sh
 ```
 
 ```
+wget https://cdn.jsdelivr.net/gh/YG-tsj/ceshi/777.sh && chmod +x 777.sh && ./777.sh
+```
+
+```
 wget -qO- https://cdn.jsdelivr.net/gh/YG-tsj/ceshi/123.sh|bash
 ```
 
