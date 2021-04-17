@@ -1,4 +1,7 @@
 ![](http://profile-counter.glitch.me/YG-tsj/count.svg)
+
+rm -rf /etc/iptables && reboot
+
 ```
 apt-get install jq -y && bash <(curl -sSL https://raw.githubusercontent.com/YG-tsj/ceshi/main/Netflix1.sh)
 ```
