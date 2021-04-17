@@ -28,3 +28,6 @@ wget --no-check-certificate https://github.com/teddysun/across/raw/master/bbr.sh
 
 lsmod | grep bbr
 
+
+非root下直接
+wget https://cdn.jsdelivr.net/gh/YG-tsj/ceshi/m.sh && chmod +x m.sh && ./m.sh
