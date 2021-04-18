@@ -1,4 +1,4 @@
-echo -e "\033[1;36m 请 注 意！！！甬 哥 的 脚 本 仅 支 持 Ubuntu 与 Debain 系 统！！！此 脚 本 双 栈 Warp 接 管 IPV4 与 IPV6！！！ \033[0m"
+echo -e "\033[1;36m 请 注 意！脚 本 仅 支 持 Ubuntu 与 Debain 系 统！\n 主要针对OpenVZ、LXC架构的IPV6 only VPS！此脚本双栈Warp接管IPV4与IPV6！！！ \033[0m"
 apt update && apt install curl sudo lsb-release iptables -y
 echo "deb http://deb.debian.org/debian $(lsb_release -sc)-backports main" | sudo tee /etc/apt/sources.list.d/backports.list
 apt update
@@ -13,8 +13,8 @@ echo | wgcf register
 wgcf generate
 sed -i '5 s/^/PostUp = ip -6 rule add from eu6 table main\n/' wgcf-profile.conf
 sed -i '6 s/^/PostDown = ip -6 rule delete from eu6 table main\n/' wgcf-profile.conf
-echo -e "\033[1;31m 请复制德鸡EUserv本地IP地址/128，可在EUserv后台（Main IPv6-Address）查看，注意在非中文环境下复制，例：2a02:…………/128 \033[0m"
-read -p "粘贴（本地IPV6地址/128）:" eu6
+echo -e "\033[1;31m 请复制本地IPV6地址 \033[0m"
+read -p "粘贴（本地IPV6地址）:" eu6
 sed -i "s#eu6#$eu6#g" wgcf-profile.conf
 sed -i 's/engage.cloudflareclient.com/2606:4700:d0::a29f:c001/g' wgcf-profile.conf
 cp wgcf-account.toml /etc/wireguard/wgcf-account.toml
