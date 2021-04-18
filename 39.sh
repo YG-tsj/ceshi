@@ -1,4 +1,4 @@
-echo -e "\033[1;36m 请 注 意！！！甬 哥 的 脚 本 仅 支 持 Ubuntu 与 Debain 系 统！！！Warp  添 加 并 接 管 IPV6+4！！！ \033[0m"
+echo -e "\033[1;36m 请 注 意！！！脚 本 仅 支 持 Ubuntu 与 Debain 系 统！！！Warp  添 加 并 接 管 IPV6+IPV4！！！ \033[0m"
 apt update 
 apt -y --no-install-recommends install openresolv dnsutils wireguard-tools
 wget -N https://cdn.jsdelivr.net/gh/YG-tsj/EUserv-addv4-warp/wgcf
@@ -8,7 +8,7 @@ echo | wgcf register
 wgcf generate
 sed -i '5 s/^/PostUp = ip -4 rule add from eu6 table main\n/' wgcf-profile.conf
 sed -i '6 s/^/PostDown = ip -4 rule delete from eu6 table main\n/' wgcf-profile.conf
-read -p "粘贴（本地IPV4地址/128）:" eu6
+read -p "粘贴（专用 IP 地址）:" eu6
 sed -i "s#eu6#$eu6#g" wgcf-profile.conf
 sed -i 's/engage.cloudflareclient.com/162.159.192.1/g' wgcf-profile.conf
 cp wgcf-account.toml /etc/wireguard/wgcf-account.toml
