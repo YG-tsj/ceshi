@@ -1,4 +1,4 @@
-echo -e "\033[1;36m 请 注 意！！！脚 本 仅 支 持 Ubuntu 与 Debain 系 统！！！Warp  添 加 并 接 管 IPV6+IPV4！！！ \033[0m"
+echo -e "\033[1;36m 请 注 意！！！脚 本 仅 支 持 Ubuntu 系 统！！！Warp  添 加 并 接 管 IPV6+IPV4！！！ \033[0m"
 apt update 
 apt -y --no-install-recommends install openresolv dnsutils wireguard-tools
 wget -N https://cdn.jsdelivr.net/gh/YG-tsj/EUserv-addv4-warp/wgcf
