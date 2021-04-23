@@ -6,8 +6,8 @@ cp wgcf /usr/local/bin/wgcf
 chmod +x /usr/local/bin/wgcf
 echo | wgcf register
 wgcf generate
-sed -i '5 s/^/PostUp = source /etc/wireguard/addcn\n/' wgcf-profile.conf
-sed -i '6 s/^/PostDown = source /etc/wireguard/delcn\n/' wgcf-profile.conf
+sed -i '5 s/^/PostUp = source /root/addcn\n/' wgcf-profile.conf
+sed -i '6 s/^/PostDown = source /root/delcn\n/' wgcf-profile.conf
 sed -i 's/engage.cloudflareclient.com/162.159.192.1/g' wgcf-profile.conf
 cp wgcf-account.toml /etc/wireguard/wgcf-account.toml
 cp wgcf-profile.conf /etc/wireguard/wgcf.conf
