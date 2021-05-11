@@ -14,13 +14,12 @@ blue(){
     echo -e "\033[36m\033[01m$1\033[0m"
 }
 
+function warp6(){
 apt update
 apt -y --no-install-recommends install openresolv dnsutils wireguard-tools
-wget -N https://cdn.jsdelivr.net/gh/YG-tsj/EUserv-warp/wgcf
+wget -N -4 https://cdn.jsdelivr.net/gh/YG-tsj/EUserv-warp/wgcf
 cp wgcf /usr/local/bin/wgcf
 chmod +x /usr/local/bin/wgcf
-
-function warp6(){
 echo | wgcf register
 wgcf generate
 sed -i 's/engage.cloudflareclient.com/162.159.192.1/g' wgcf-profile.conf
@@ -36,6 +35,11 @@ green " 如上方显示IPV6地址：2a09:…………，则说明成功啦！\n 
 }
 
 function warp64(){
+apt update
+apt -y --no-install-recommends install openresolv dnsutils wireguard-tools
+wget -N -4 https://cdn.jsdelivr.net/gh/YG-tsj/EUserv-warp/wgcf
+cp wgcf /usr/local/bin/wgcf
+chmod +x /usr/local/bin/wgcf
 echo | wgcf register
 wgcf generate
 sed -i '5 s/^/PostUp = ip -4 rule add from eu6 table main\n/' wgcf-profile.conf
@@ -54,6 +58,11 @@ green " 如上方显示IPV4地址：8.…………，IPV6地址：2a09:………
 }
 
 function warp4(){
+apt update
+apt -y --no-install-recommends install openresolv dnsutils wireguard-tools
+wget -N -4 https://cdn.jsdelivr.net/gh/YG-tsj/EUserv-warp/wgcf
+cp wgcf /usr/local/bin/wgcf
+chmod +x /usr/local/bin/wgcf
 echo | wgcf register
 wgcf generate
 sed -i '5 s/^/PostUp = ip -4 rule add from eu6 table main\n/' wgcf-profile.conf
@@ -73,6 +82,11 @@ green " 如上方显示IPV4地址：8.…………，则说明成功啦！\n 如
 }
 
 function warp466(){
+apt update
+apt -y --no-install-recommends install openresolv dnsutils wireguard-tools
+wget -N -4 https://cdn.jsdelivr.net/gh/YG-tsj/EUserv-warp/wgcf
+cp wgcf /usr/local/bin/wgcf
+chmod +x /usr/local/bin/wgcf
 echo | wgcf register
 wgcf generate
 sed -i '5 s/^/PostUp = ip -6 rule add from eu6 table main\n/' wgcf-profile.conf
@@ -91,6 +105,11 @@ green " 如上方显示IPV6地址：2a09:…………，则说明成功啦！\n 
 }
 
 function warp4646(){
+apt update
+apt -y --no-install-recommends install openresolv dnsutils wireguard-tools
+wget -N -4 https://cdn.jsdelivr.net/gh/YG-tsj/EUserv-warp/wgcf
+cp wgcf /usr/local/bin/wgcf
+chmod +x /usr/local/bin/wgcf
 echo | wgcf register
 wgcf generate
 sed -i '5 s/^/PostUp = ip -4 rule add from eu4 table main\n/' wgcf-profile.conf
@@ -112,6 +131,11 @@ green " 如上方显示IPV4地址：8.…………，IPV6地址：2a09:………
 }
 
 function warp464(){
+apt update
+apt -y --no-install-recommends install openresolv dnsutils wireguard-tools
+wget -N -4 https://cdn.jsdelivr.net/gh/YG-tsj/EUserv-warp/wgcf
+cp wgcf /usr/local/bin/wgcf
+chmod +x /usr/local/bin/wgcf
 echo | wgcf register
 wgcf generate
 sed -i '5 s/^/PostUp = ip -4 rule add from eu6 table main\n/' wgcf-profile.conf
