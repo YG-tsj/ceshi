@@ -11,7 +11,7 @@ yellow(){
     echo -e "\033[33m\033[01m$1\033[0m"
 }
 blue(){
-    echo -e "\033[34m\033[01m$1\033[0m"
+    echo -e "\033[36m\033[01m$1\033[0m"
 }
 
 apt update
@@ -127,17 +127,17 @@ echo -e "\033[1;32m 如上方显示IPV4地址：8.…………，则说明成功
 #主菜单
 function start_menu(){
     clear
-    red " 123" 
-    red " 456" 
-    green " 789 "
-    green " 000000 "
+    red " 项目地址 https://github.com/YG-tsj/Oracle-warp  YouTube频道：甬哥探世界" 
+    blue " 仅支持Ubuntu 20.04系统，Linux系统内核必须5.6以上" 
+    green " 脚本1、2、3适合用 纯IPV4 KVM架构VPS "
+    green " 脚本4、5、6适合用 双栈IPV4+IPV6 KVM架构VPS "
     yellow " =================================================="
-    green " 1. IPV4加ipv6" 
-    green " 2. ipv4加ipv6与4"
-    green " 3. ipv4加ipv4"
-    green " 4. 466" 
-    green " 5. 4646"
-    green " 6. 464"
+    green " 1. 纯IPV4。添加WARP分配的IPV6" 
+    green " 2. 纯IPV4。添加WARP分配的IPV6与IPV4"
+    green " 3. 纯IPV4。添加WARP分配的IPV4"
+    green " 4. 双栈IPV4+IPV6。添加WARP分配的IPV6" 
+    green " 5. 双栈IPV4+IPV6。添加WARP分配的IPV6与IPV4"
+    green " 6. 双栈IPV4+IPV6。添加WARP分配的IPV4"
     green " =================================================="
     green " 0. 退出脚本"
     echo
