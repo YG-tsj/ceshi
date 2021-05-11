@@ -82,8 +82,8 @@ cp wgcf-profile.conf /etc/wireguard/wgcf.conf
 systemctl enable wg-quick@wgcf
 systemctl start wg-quick@wgcf
 rm -f warp466* wgcf*
-echo -e "\033[1;33m 检测是否成功启动Warp！\n 显示IPV6地址：$(wget -qO- ipv6.ip.sb) \033[0m"
-echo -e "\033[1;32m 如上方显示IPV6地址：2a09:…………，则说明成功啦！\n 如上方无IP显示,（说明申请WGCF账户失败），请“无限”重复运行该脚本吧，直到成功为止！！！ \033[0m"
+yellow " 检测是否成功启动Warp！\n 显示IPV6地址：$(wget -qO- ipv6.ip.sb) "
+green " 如上方显示IPV6地址：2a09:…………，则说明成功啦！\n 如上方无IP显示,（说明申请WGCF账户失败），请“无限”重复运行该脚本吧，直到成功为止！！！ "
 }
 
 function warp4646(){
@@ -102,8 +102,8 @@ cp wgcf-profile.conf /etc/wireguard/wgcf.conf
 systemctl enable wg-quick@wgcf
 systemctl start wg-quick@wgcf
 rm -f warp4646* wgcf*
-echo -e "\033[1;33m 检测是否成功启动（IPV4+IPV6）双栈Warp！\n 显示IPV4地址：$(wget -qO- ipv4.ip.sb) 显示IPV6地址：$(wget -qO- ipv6.ip.sb) \033[0m"
-echo -e "\033[1;32m 如上方显示IPV4地址：8.…………，IPV6地址：2a09:…………，则说明成功啦！\n 如上方IPV4无IP显示,IPV6显示本地IP（说明申请WGCF账户失败），请“无限”重复运行该脚本吧，直到成功为止！！！ \033[0m"
+yellow " 检测是否成功启动（IPV4+IPV6）双栈Warp！\n 显示IPV4地址：$(wget -qO- ipv4.ip.sb) 显示IPV6地址：$(wget -qO- ipv6.ip.sb) "
+green " 如上方显示IPV4地址：8.…………，IPV6地址：2a09:…………，则说明成功啦！\n 如上方IPV4无IP显示,IPV6显示本地IP（说明申请WGCF账户失败），请“无限”重复运行该脚本吧，直到成功为止！！！ "
 }
 
 function warp464(){
@@ -119,25 +119,25 @@ cp wgcf-profile.conf /etc/wireguard/wgcf.conf
 systemctl enable wg-quick@wgcf
 systemctl start wg-quick@wgcf
 rm -f warp464* wgcf*
-echo -e "\033[1;33m 检测是否成功启动Warp！\n 显示IPV4地址：$(wget -qO- ipv4.ip.sb) \033[0m"
-echo -e "\033[1;32m 如上方显示IPV4地址：8.…………，则说明成功啦！\n 如上方显示VPS本地IP,（说明申请WGCF账户失败），请“无限”重复运行该脚本吧，直到成功为止！！！ \033[0m"
+yellow " 检测是否成功启动Warp！\n 显示IPV4地址：$(wget -qO- ipv4.ip.sb) "
+green " 如上方显示IPV4地址：8.…………，则说明成功啦！\n 如上方显示VPS本地IP,（说明申请WGCF账户失败），请“无限”重复运行该脚本吧，直到成功为止！！！ "
 }
 
 
 #主菜单
 function start_menu(){
     clear
-    red " 项目地址 https://github.com/YG-tsj/Oracle-warp  YouTube频道：甬哥探世界" 
+    red " 详细说明请看Github项目地址 https://github.com/YG-tsj/Oracle-warp  YouTube频道：甬哥探世界" 
     blue " 仅支持Ubuntu 20.04系统，Linux系统内核必须5.6以上" 
-    green " 脚本1、2、3适合用 纯IPV4 KVM架构VPS "
-    green " 脚本4、5、6适合用 双栈IPV4+IPV6 KVM架构VPS "
+    blue " 脚本1、2、3仅适用于：纯IPV4 KVM架构VPS "
+    blue " 脚本4、5、6仅适用于：双栈IPV4+IPV6 KVM架构VPS "
     yellow " =================================================="
-    green " 1. 纯IPV4。添加WARP分配的IPV6" 
-    green " 2. 纯IPV4。添加WARP分配的IPV6与IPV4"
-    green " 3. 纯IPV4。添加WARP分配的IPV4"
-    green " 4. 双栈IPV4+IPV6。添加WARP分配的IPV6" 
-    green " 5. 双栈IPV4+IPV6。添加WARP分配的IPV6与IPV4"
-    green " 6. 双栈IPV4+IPV6。添加WARP分配的IPV4"
+    green " 1. 纯IPV4。添加WARP分配的IPV6（无须输入IP！其他vps推荐）" 
+    green " 2. 纯IPV4。添加WARP分配的IPV6与IPV4（须输入专用IP）"
+    green " 3. 纯IPV4。添加WARP分配的IPV4（须输入专用IP）"
+    green " 4. 双栈IPV4+IPV6。添加WARP分配的IPV6(须输入IPV6本地IP)" 
+    green " 5. 双栈IPV4+IPV6。添加WARP分配的IPV6与IPV4(须输入专用IP与IPV6本地IP)"
+    green " 6. 双栈IPV4+IPV6。添加WARP分配的IPV4(须输入专用IP)"
     green " =================================================="
     green " 0. 退出脚本"
     echo
