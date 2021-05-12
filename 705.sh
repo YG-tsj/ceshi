@@ -174,11 +174,13 @@ wget --no-check-certificate https://github.com/teddysun/across/raw/master/bbr.sh
 function cwarp(){
 systemctl stop wg-quick@wgcf
 systemctl disable wg-quick@wgcf
+green " 检测是否成功关闭Warp！请对照下方显示的IP地址是否与VPS本地的IP地址是否一致，如相同则成功关闭！ \n 显示IPV4地址：$(wget -qO- ipv4.ip.sb) 显示IPV6地址：$(wget -qO- ipv6.ip.sb) "
 }
 
 function owarp(){
 systemctl enable wg-quick@wgcf
 systemctl start wg-quick@wgcf
+green " 检测是否成功启动Warp！如下方显示为IPV4地址：8.…………，IPV6地址：2a09:…………，则说明成功启动！\n 显示IPV4地址：$(wget -qO- ipv4.ip.sb) 显示IPV6地址：$(wget -qO- ipv6.ip.sb) "
 }
 
 #主菜单
