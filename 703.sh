@@ -197,8 +197,8 @@ function start_menu(){
     green " 7. 仅适用于双栈IPV4+IPV6。添加WARP分配的IPV6       (须输入IPV6本地IP)" 
     green " 8. 仅适用于双栈IPV4+IPV6。添加WARP分配的IPV6与IPV4 (须输入专用IP与IPV6本地IP)"
     green " 9. 仅适用于双栈IPV4+IPV6。添加WARP分配的IPV4       (须输入专用IP)"
-    green " 10. 关闭WARP功能
-    green " 11. 开启WARP功能
+    green " 10. 关闭WARP功能 "
+    green " 11. 开启WARP功能 "
     green " =================================================="
     green " 0. 退出脚本"
     echo
