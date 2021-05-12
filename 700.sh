@@ -153,42 +153,73 @@ yellow " 检测是否成功启动Warp！\n 显示IPV4地址：$(wget -qO- ipv4.i
 green " 如上方显示IPV4地址：8.…………，则说明成功啦！\n 如上方显示VPS本地IP,（说明申请WGCF账户失败），请“无限”重复运行该脚本吧，直到成功为止！！！ "
 }
 
+function linux5.11(){
+cd /tmp
+wget --no-check-certificate -c https://kernel.ubuntu.com/~kernel-ppa/mainline/v5.11/amd64/linux-headers-5.11.0-051100_5.11.0-051100.202102142330_all.deb
+wget --no-check-certificate -c https://kernel.ubuntu.com/~kernel-ppa/mainline/v5.11/amd64/linux-headers-5.11.0-051100-generic_5.11.0-051100.202102142330_amd64.deb 
+wget --no-check-certificate -c https://kernel.ubuntu.com/~kernel-ppa/mainline/v5.11/amd64/linux-image-unsigned-5.11.0-051100-generic_5.11.0-051100.202102142330_amd64.deb
+wget --no-check-certificate -c https://kernel.ubuntu.com/~kernel-ppa/mainline/v5.11/amd64/linux-modules-5.11.0-051100-generic_5.11.0-051100.202102142330_amd64.deb
+sudo dpkg -i *.deb
+reboot
+}
+
+function iptables(){
+iptables -P INPUT ACCEPT
+iptables -P FORWARD ACCEPT
+iptables -P OUTPUT ACCEPT
+iptables -F
+}
+
+function BBR(){
+wget --no-check-certificate https://github.com/teddysun/across/raw/master/bbr.sh && chmod +x bbr.sh && ./bbr.sh
+}
 
 #主菜单
 function start_menu(){
     clear
     red " 详细说明请看Github项目地址 https://github.com/YG-tsj/Oracle-warp  YouTube频道：甬哥探世界" 
-    blue " 仅支持Ubuntu 20.04系统，Linux系统内核必须5.6以上" 
-    blue " 脚本1、2、3仅适用于：纯IPV4 KVM架构VPS "
-    blue " 脚本4、5、6仅适用于：双栈IPV4+IPV6 KVM架构VPS "
-    yellow " =================================================="
-    green " 1. 纯IPV4。       添加WARP分配的IPV6       (无须输入IP！其他vps推荐）" 
-    green " 2. 纯IPV4。       添加WARP分配的IPV6与IPV4 (须输入专用IP）"
-    green " 3. 纯IPV4。       添加WARP分配的IPV4       (须输入专用IP）"
-    green " 4. 双栈IPV4+IPV6。添加WARP分配的IPV6       (须输入IPV6本地IP)" 
-    green " 5. 双栈IPV4+IPV6。添加WARP分配的IPV6与IPV4 (须输入专用IP与IPV6本地IP)"
-    green " 6. 双栈IPV4+IPV6。添加WARP分配的IPV4       (须输入专用IP)"
+    red " 目前仅支持Ubuntu 20.04系统，Linux系统内核必须5.6以上"     
+    red " ====================================================" 
+    blue " 1. 开启甲骨文VPS的ubuntu系统所有端口（仅适用于甲骨文云） "
+    blue " 2. 更新linux系统通用版内核到5.11版（安装WARP前提） "
+    blue " 3. 开启秋水大佬teddysun版BBR加速 "
+    blue " =================================================="
+    green " 4. 仅适用于纯IPV4。       添加WARP分配的IPV6       (无须输入IP！其他vps推荐）" 
+    green " 5. 仅适用于纯IPV4。       添加WARP分配的IPV6与IPV4 (须输入专用IP）"
+    green " 6. 仅适用于纯IPV4。       添加WARP分配的IPV4       (须输入专用IP）"
+    green " 7. 仅适用于双栈IPV4+IPV6。添加WARP分配的IPV6       (须输入IPV6本地IP)" 
+    green " 8. 仅适用于双栈IPV4+IPV6。添加WARP分配的IPV6与IPV4 (须输入专用IP与IPV6本地IP)"
+    green " 9. 仅适用于双栈IPV4+IPV6。添加WARP分配的IPV4       (须输入专用IP)"
     green " =================================================="
     green " 0. 退出脚本"
     echo
     read -p "请输入数字:" menuNumberInput
     case "$menuNumberInput" in
         1 )
-           warp6
+           iptables
 	;;
-        2 )
-           warp64
+	2 )
+           linux5.11
 	;;
         3 )
-           warp4
-	;;
+           BBR
+	;;    
         4 )
-           warp466
+           warp6
 	;;
         5 )
+           warp64
+	;;
+        6 )
+           warp4
+	;;
+        7 )
+           warp466
+	;;
+        8 )
            warp4646
 	;;
-	6 )
+	9 )
            warp464
 	;;
         0 )
