@@ -164,10 +164,7 @@ reboot
 }
 
 function iptables(){
-iptables -P INPUT ACCEPT
-iptables -P FORWARD ACCEPT
-iptables -P OUTPUT ACCEPT
-iptables -F
+rm -rf /etc/iptables && reboot
 }
 
 function BBR(){
