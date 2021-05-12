@@ -171,6 +171,16 @@ function BBR(){
 wget --no-check-certificate https://github.com/teddysun/across/raw/master/bbr.sh && chmod +x bbr.sh && ./bbr.sh
 }
 
+function cwarp(){
+systemctl stop wg-quick@wgcf
+systemctl disable wg-quick@wgcf
+}
+
+function owarp(){
+systemctl enable wg-quick@wgcf
+systemctl start wg-quick@wgcf
+}
+
 #主菜单
 function start_menu(){
     clear
@@ -178,7 +188,7 @@ function start_menu(){
     red " 目前仅支持Ubuntu 20.04系统，Linux系统内核必须5.6以上"     
     red " ====================================================" 
     blue " 1. 开启甲骨文VPS的ubuntu系统所有端口（仅适用于甲骨文云） "
-    blue " 2. 更新linux系统通用版内核到5.11版（安装WARP前提） "
+    blue " 2. 更新linux系统通用版内核至5.11版 "
     blue " 3. 开启秋水大佬teddysun版BBR加速 "
     blue " =================================================="
     green " 4. 仅适用于纯IPV4。       添加WARP分配的IPV6       (无须输入IP！其他vps推荐）" 
@@ -187,6 +197,8 @@ function start_menu(){
     green " 7. 仅适用于双栈IPV4+IPV6。添加WARP分配的IPV6       (须输入IPV6本地IP)" 
     green " 8. 仅适用于双栈IPV4+IPV6。添加WARP分配的IPV6与IPV4 (须输入专用IP与IPV6本地IP)"
     green " 9. 仅适用于双栈IPV4+IPV6。添加WARP分配的IPV4       (须输入专用IP)"
+    green " 10. 关闭WARP功能
+    green " 11. 开启WARP功能
     green " =================================================="
     green " 0. 退出脚本"
     echo
@@ -218,6 +230,12 @@ function start_menu(){
 	;;
 	9 )
            warp464
+	;;
+	10 )
+           cwarp
+	;;
+	11 )
+           owarp
 	;;
         0 )
             exit 1
