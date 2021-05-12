@@ -183,15 +183,23 @@ systemctl start wg-quick@wgcf
 green " 检测是否成功启动Warp！如下方显示为IPV4地址：8.…………，IPV6地址：2a09:…………，则说明成功启动！\n 目前IPV4地址：$(wget -qO- ipv4.ip.sb) 目前IPV6地址：$(wget -qO- ipv6.ip.sb) "
 }
 
+function macka(){
+wget -P /root -N --no-check-certificate "https://raw.githubusercontent.com/mack-a/v2ray-agent/master/install.sh" && chmod 700 /root/install.sh && /root/install.sh
+}
+
+function phlinhng(){
+curl -fsSL https://raw.staticdn.net/phlinhng/v2ray-tcp-tls-web/main/src/xwall.sh -o ~/xwall.sh && bash ~/xwall.sh
+}
+
 #主菜单
 function start_menu(){
     clear
     red " 详细说明请看Github项目地址 https://github.com/YG-tsj/Oracle-warp  YouTube频道：甬哥探世界 " 
     red " 围绕WARP功能的脚本，目前仅支持Ubuntu 20.04系统，Linux系统内核必须5.6以上，还在优化更新中…… "     
     red " ====================================================" 
-    blue " 1. 开启甲骨文VPS的ubuntu系统所有端口（仅适用于甲骨文云） "
-    blue " 2. 更新linux系统通用版内核至5.11版 "
-    blue " 3. 开启秋水大佬teddysun版BBR加速 "
+    blue " 1. 开启甲骨文VPS的ubuntu系统所有端口，自动断连后，请重新连接SSH（仅适用于甲骨文云） "
+    blue " 2. 更新linux系统通用版内核至5.11版，自动断连后，请重新连接SSH "
+    blue " 3. 启用teddysun版通用BBR加速 按任意键即可安装成功 "
     blue " =================================================="
     green " 4. 仅适用于纯IPV4。       添加WARP分配的IPV6       (无须输入IP！其他vps推荐）" 
     green " 5. 仅适用于纯IPV4。       添加WARP分配的IPV6与IPV4 (须输入专用IP）"
@@ -202,7 +210,10 @@ function start_menu(){
     green " 10. 关闭WARP功能 "
     green " 11. 开启WARP功能 "
     green " =================================================="
-    green " 0. 退出脚本"
+    yellow " 12.使用mack-a脚本（Xray,V2ray,Trojan-go） "
+    yellow " 13.使用phlinhng脚本（Xray,Trojan-go,SS+v2ray-plugin） "
+    yellow " =================================================="
+    red " 0. 退出脚本"
     echo
     read -p "请输入数字:" menuNumberInput
     case "$menuNumberInput" in
@@ -238,6 +249,12 @@ function start_menu(){
 	;;
 	11 )
            owarp
+	;;
+	12 )
+           macka
+	;;
+	13 )
+           phlinhng
 	;;
         0 )
             exit 1
