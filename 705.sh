@@ -174,13 +174,13 @@ wget --no-check-certificate https://github.com/teddysun/across/raw/master/bbr.sh
 function cwarp(){
 systemctl stop wg-quick@wgcf
 systemctl disable wg-quick@wgcf
-green " 检测是否成功关闭Warp！请对照下方显示的IP地址是否与VPS本地的IP地址是否一致，如相同则成功关闭！ \n 目前IPV4地址：$(wget -qO- ipv4.ip.sb) 目前IPV6地址：$(wget -qO- ipv6.ip.sb) "
+green " 检测是否成功关闭Warp！请对照下方显示的IP地址是否与VPS本地的IP地址是否一致，如相同则成功关闭！ \n 当前IPV4地址：$(wget -qO- ipv4.ip.sb) 当前IPV6地址：$(wget -qO- ipv6.ip.sb) "
 }
 
 function owarp(){
 systemctl enable wg-quick@wgcf
 systemctl start wg-quick@wgcf
-green " 检测是否成功启动Warp！如下方显示为IPV4地址：8.…………，IPV6地址：2a09:…………，则说明成功启动！\n 目前IPV4地址：$(wget -qO- ipv4.ip.sb) 目前IPV6地址：$(wget -qO- ipv6.ip.sb) "
+green " 检测是否成功启动Warp！如下方显示为IPV4地址：8.…………，IPV6地址：2a09:…………，则说明成功启动！\n 当前IPV4地址：$(wget -qO- ipv4.ip.sb) 当前IPV6地址：$(wget -qO- ipv6.ip.sb) "
 }
 
 function macka(){
@@ -201,12 +201,12 @@ function start_menu(){
     blue " 2. 更新linux系统通用版内核至5.11版，自动断连后，请重新连接SSH "
     blue " 3. 启用teddysun版通用BBR加速 按任意键即可安装成功 "
     blue " =================================================="
-    green " 4. 仅适用于纯IPV4。       添加WARP分配的IPV6       (无须输入IP！其他vps推荐）" 
-    green " 5. 仅适用于纯IPV4。       添加WARP分配的IPV6与IPV4 (须输入专用IP）"
-    green " 6. 仅适用于纯IPV4。       添加WARP分配的IPV4       (须输入专用IP）"
-    green " 7. 仅适用于双栈IPV4+IPV6。添加WARP分配的IPV6       (须输入IPV6本地IP)" 
-    green " 8. 仅适用于双栈IPV4+IPV6。添加WARP分配的IPV6与IPV4 (须输入专用IP与IPV6本地IP)"
-    green " 9. 仅适用于双栈IPV4+IPV6。添加WARP分配的IPV4       (须输入专用IP)"
+    green " 4. 仅适用于纯IPV4。       添加WARP分配的IPV6       (无须输入IP地址！其他vps推荐）" 
+    green " 5. 仅适用于纯IPV4。       添加WARP分配的IPV6与IPV4 (须输入VPS专用IP地址）"
+    green " 6. 仅适用于纯IPV4。       添加WARP分配的IPV4       (须输入VPS专用IP地址）"
+    green " 7. 仅适用于双栈IPV4+IPV6。添加WARP分配的IPV6       (须输入VPS本地IPV6地址)" 
+    green " 8. 仅适用于双栈IPV4+IPV6。添加WARP分配的IPV6与IPV4 (须输入VPS专用IP地址+VPS本地IPV6地址)"
+    green " 9. 仅适用于双栈IPV4+IPV6。添加WARP分配的IPV4       (须输入VPS专用IP地址)"
     green " 10. 关闭WARP功能 "
     green " 11. 开启WARP功能 "
     green " =================================================="
