@@ -191,6 +191,10 @@ function phlinhng(){
 curl -fsSL https://raw.staticdn.net/phlinhng/v2ray-tcp-tls-web/main/src/xwall.sh -o ~/xwall.sh && bash ~/xwall.sh
 }
 
+function phlinhng(){
+当前IPV4地址：$(wget -qO- ipv4.ip.sb) 当前IPV6地址：$(wget -qO- ipv6.ip.sb)
+}
+
 #主菜单
 function start_menu(){
     clear
@@ -209,9 +213,10 @@ function start_menu(){
     green " 9. 仅适用于双栈IPV4+IPV6。添加WARP分配的IPV4       (须输入VPS专用IP地址)"
     green " 10. 关闭WARP功能 "
     green " 11. 开启WARP功能 "
+    green " 12. 查看VPS当前IPV4/IPV6地址 "
     green " =================================================="
-    yellow " 12.使用mack-a脚本（Xray,V2ray,Trojan-go） "
-    yellow " 13.使用phlinhng脚本（Xray,Trojan-go,SS+v2ray-plugin） "
+    yellow " 13.使用mack-a脚本（Xray,V2ray,Trojan-go） "
+    yellow " 14.使用phlinhng脚本（Xray,Trojan-go,SS+v2ray-plugin） "
     yellow " =================================================="
     red " 0. 退出脚本"
     echo
@@ -251,9 +256,12 @@ function start_menu(){
            owarp
 	;;
 	12 )
-           macka
+           ip
 	;;
 	13 )
+           macka
+	;;
+	14 )
            phlinhng
 	;;
         0 )
