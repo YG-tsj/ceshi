@@ -169,7 +169,7 @@ cp wgcf /usr/local/bin/wgcf
 chmod +x /usr/local/bin/wgcf
 echo | wgcf register
 wgcf generate
-sed -i '5 s/^/PostUp = ip -4 rule add from $(ip -4 a | egrep inet | egrep -v 127.0.0 | awk '{print $2}' | cut -d'/' -f1) table main\n/' wgcf-profile.conf
+sed -i '5 s/^/PostUp = ip -4 rule add from $(ip a | grep -E 'ens|eth0|enp' | awk -F '/' '{print $1}' | awk 'NR==2 {print $2}') table main\n/' wgcf-profile.conf
 sed -i '6 s/^/PostDown = ip -4 rule delete from $(ip -4 a | egrep inet | egrep -v 127.0.0 | awk '{print $2}' | cut -d'/' -f1) table main\n/' wgcf-profile.conf
 sed -i '7 s/^/PostUp = ip -6 rule add from $(ip -6 a | egrep inet | egrep -v ::1 | awk '{print $2}' | cut -d'/' -f1) table main\n/' wgcf-profile.conf
 sed -i '8 s/^/PostDown = ip -6 rule delete from $(ip -6 a | egrep inet | egrep -v ::1 | awk '{print $2}' | cut -d'/' -f1) table main\n/' wgcf-profile.conf
