@@ -169,10 +169,10 @@ cp wgcf /usr/local/bin/wgcf
 chmod +x /usr/local/bin/wgcf
 echo | wgcf register
 wgcf generate
-sed -i '5 s/^/PostUp = ip -4 rule add from $(ip addr | egrep 'ens|eth0' | awk 'NR==2 {print $2}' | cut -d'/' -f1) table main\n/' wgcf-profile.conf
-sed -i '6 s/^/PostDown = ip -4 rule delete from $(ip addr | egrep 'ens|eth0' | awk 'NR==2 {print $2}' | cut -d'/' -f1) table main\n/' wgcf-profile.conf
-sed -i '7 s/^/PostUp = ip -6 rule add from $(ip addr | egrep 'inet6' | awk 'NR==2 {print $2}' | cut -d'/' -f1) table main\n/' wgcf-profile.conf
-sed -i '8 s/^/PostDown = ip -6 rule delete from $(ip addr | egrep 'inet6' | awk 'NR==2 {print $2}' | cut -d'/' -f1) table main\n/' wgcf-profile.conf
+sed -i "5 s/^/PostUp = ip -4 rule add from $(ip addr | egrep 'ens|eth0' | awk 'NR==2 {print $2}' | cut -d'/' -f1) table main\n/" wgcf-profile.conf
+sed -i "6 s/^/PostDown = ip -4 rule delete from $(ip addr | egrep 'ens|eth0' | awk 'NR==2 {print $2}' | cut -d'/' -f1) table main\n/" wgcf-profile.conf
+sed -i "7 s/^/PostUp = ip -6 rule add from $(ip addr | egrep 'inet6' | awk 'NR==2 {print $2}' | cut -d'/' -f1) table main\n/" wgcf-profile.conf
+sed -i "8 s/^/PostDown = ip -6 rule delete from $(ip addr | egrep 'inet6' | awk 'NR==2 {print $2}' | cut -d'/' -f1) table main\n/" wgcf-profile.conf
 sed -i 's/1.1.1.1/9.9.9.9,8.8.8.8/g' wgcf-profile.conf
 cp wgcf-account.toml /etc/wireguard/wgcf-account.toml
 cp wgcf-profile.conf /etc/wireguard/wgcf.conf
