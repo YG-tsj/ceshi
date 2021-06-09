@@ -47,23 +47,14 @@ bit=`uname -m`
 version=`uname -r | awk -F "-" '{print $1}'`
 
 yellow " VPS小鸡内脏检测结果如下："
-yellow " 操作系统-$release "
-yellow " 系统内核版本-$version " 
-yellow " CPU架构-$bit"
+yellow " 操作系统- $release "
+yellow " 系统内核版本- $version " 
+yellow " CPU架构- $bit"
+
 
 sleep 5s
 echo "按任意键继续，或者按Ctrl+C退出"
 char=$(get_char)
-
-yellow " 检测当前内核版本 "
-main=`uname  -r | awk -F . '{print $1 }'`
-minor=`uname -r | awk -F . '{print $2}'`
-
-if [ "$main" -lt 5 ]|| [ "$minor" -lt 6 ]; then 
-	red " 检测到内核版本小于5.6，为实现WARP网络效能最高的内核集成Wireguard方案，回到菜单，选择2，更新内核吧"
-	exit 1
-fi
-
 
 yellow " 检测当前CPU架构 "
 bit=`uname -m`
@@ -76,7 +67,28 @@ else
  exit
 fi
 
-
+if [ $release = "Centos" ]
+	then
+		yum -y install wget curl
+		yum install yum-utils epel-release -y
+		yum install wireguard-dkms wireguard-tools iproute -y
+		yum --enablerepo=elrepo-kernel -y install kernel-ml-headers
+	elif [ $release = "Debian" ]
+	then
+		apt-get update
+		apt-get install sudo net-tools openresolv curl wget -y
+		echo "deb http://deb.debian.org/debian/ unstable main" > /etc/apt/sources.list.d/unstable-wireguard.list
+		printf 'Package: *\nPin: release a=unstable\nPin-Priority: 150\n' > /etc/apt/preferences.d/limit-unstable
+		apt-get install linux-headers-`uname -r` -y
+		apt-get install wireguard-dkms wireguard-tools -y
+	elif [ $release = "Ubuntu" ]
+	then
+		apt-get update
+		apt -y --no-install-recommends install openresolv dnsutils wireguard-tools
+	else
+		yellow " 不支持当前系统 "
+		exit 1
+	fi
 
 
 
