@@ -61,14 +61,6 @@ if [[ ${bit} == "x86_64" ]]; then
 
 function warp6(){
 
-main=`uname  -r | awk -F . '{print $1 }'`
-minor=`uname -r | awk -F . '{print $2}'`
-
-if [ "$main" -lt 5 ]|| [ "$minor" -lt 0 ]; then 
-	red " 检测到内核版本小于5.0，回到菜单，选择2，更新内核吧"
-	exit 1
-fi
-
 if [ $release = "Centos" ]
 	then
 		yum -y install wget curl
