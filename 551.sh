@@ -17,17 +17,6 @@ blue(){
 }
 
 function warp6(){
-yellow " 检测当前内核版本 "
-uname -r
-
-main=`uname  -r | awk -F . '{print $1 }'`
-minor=`uname -r | awk -F . '{print $2}'`
-
-if [ "$main" -lt 5 ]|| [ "$minor" -lt 6 ]; then 
-	red " 检测到内核版本小于5.6，为实现WARP网络效能最高的内核集成Wireguard方案，回到菜单，选择2，更新内核吧"
-	exit 1
-fi
-
 apt update
 apt -y --no-install-recommends install openresolv dnsutils wireguard-tools
 wget -N https://github.com/YG-tsj/EUserv-warp/raw/main/wgcf
