@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-PATH=/usr/local/bin
+PATH=/usr/local/bin：
 export PATH
 
 #彩色
