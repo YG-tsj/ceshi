@@ -84,7 +84,7 @@ if [ $release = "Centos" ]
 		exit 1
 	fi
 
-wget -N https://github.com/YG-tsj/EUserv-warp/raw/main/wgcf  -O ./usr/local/bin/wgcf
+wget -N https://github.com/YG-tsj/EUserv-warp/raw/main/wgcf -O /usr/local/bin/wgcf
 chmod +x /usr/local/bin/wgcf
 echo | wgcf register
 wgcf generate
