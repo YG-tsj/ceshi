@@ -1,6 +1,4 @@
 #!/usr/local/bin/env bash
-PATH=/usr/local/bin:~/bin
-export PATH
 
 #彩色
 red(){
