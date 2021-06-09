@@ -24,7 +24,7 @@ get_char(){
 	stty $SAVEDSTTY
 }
 
-yellos "现在开始检查你的系统是否支持"
+yellow "现在开始检查你的系统是否支持"
 	#判断是什么Linux系统
 	if [[ -f /etc/redhat-release ]]; then
 		release="Centos"
