@@ -42,14 +42,13 @@ yellow "现在开始检查你的系统是否支持"
 		release="Centos"
     fi
 
-yellow " 检测当前CPU架构 "
 bit=`uname -m`
 version=`uname -r | awk -F "-" '{print $1}'`
 
 yellow " VPS小鸡内脏检测结果如下："
-yellow " 操作系统- $release "
-yellow " 系统内核版本- $version " 
-yellow " CPU架构- $bit"
+yellow " 操作系统名称 - $release "
+yellow " 系统内核版本 - $version " 
+yellow " CPU架构名称  - $bit"
 
 
 
