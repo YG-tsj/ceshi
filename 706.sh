@@ -1,4 +1,4 @@
-#!/usr/local/bin/env bash
+#!/bin/bash
 
 #彩色
 red(){
