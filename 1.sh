@@ -49,7 +49,7 @@ version=`uname -r | awk -F "-" '{print $1}'`
 yellow " VPS小鸡内脏检测结果如下："
 yellow " 操作系统名称 - $release "
 yellow " 系统内核版本 - $version " 
-yellow " CPU架构名称  - $bit"
+yellow " CPU架构名称 - $bit"
 
 
 
@@ -64,10 +64,13 @@ function warp6(){
 
 if [ $release = "Centos" ]
 	then
-		yum -y install wget curl
 		yum install yum-utils epel-release -y
-		yum install wireguard-dkms wireguard-tools iproute -y
-		yum --enablerepo=elrepo-kernel -y install kernel-ml-headers
+		yum --enablerepo=elrepo-kernel -y install kernel-ml-headers		
+		yum install -y \
+                https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+                curl -o /etc/yum.repos.d/jdoss-wireguard-epel-7.repo \
+                https://copr.fedorainfracloud.org/coprs/jdoss/wireguard/repo/epel-7/jdoss-wireguard-epel-7.repo
+                yum install -y wireguard-dkms wireguard-tools
 	elif [ $release = "Debian" ]
 	then
 		apt-get update
