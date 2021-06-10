@@ -64,8 +64,7 @@ function warp6(){
 
 if [ $release = "Centos" ]
 	then
-		yum install yum-utils epel-release -y
-		yum --enablerepo=elrepo-kernel -y install kernel-ml-headers		
+		yum install yum-utils epel-release -y		
 		yum install -y \
                 https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
                 curl -o /etc/yum.repos.d/jdoss-wireguard-epel-7.repo \
