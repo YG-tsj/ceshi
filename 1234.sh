@@ -16,6 +16,7 @@ blue(){
 }
 
 if [[ ${virt} == "kvm" ]]; then
+echo "ok"
 
 get_char(){
 	SAVEDSTTY=`stty -g`
@@ -57,6 +58,7 @@ version=`uname -r | awk -F "-" '{print $1}'`
 virt=`virt-what`
 
 if [[ ${virt} == "kvm" ]]; then
+echo "ok"
 else
 yellow " 虚拟架构类型 - $virt "
 yellow " 此vps并非kvm架构，试试opvz/lxc架构脚本吧！"
@@ -74,6 +76,7 @@ version=`uname -r | awk -F "-" '{print $1}'`
 virt=`virt-what`
 
 if [[ ${virt} == "kvm" ]]; then
+echo "ok"
 else
 yellow " 虚拟架构类型 - $virt "
 yellow " 此vps并非kvm架构，试试opvz/lxc架构脚本吧！"
@@ -91,6 +94,7 @@ version=`uname -r | awk -F "-" '{print $1}'`
 virt=`virt-what`
 
 if [[ ${virt} == "kvm" ]]; then
+echo "ok"
 else
 yellow " 虚拟架构类型 - $virt "
 yellow " 此vps并非kvm架构，试试opvz/lxc架构脚本吧！"
