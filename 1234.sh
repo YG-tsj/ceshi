@@ -45,12 +45,13 @@ yellow "现在开始检查你的系统是否支持"
 
 bit=`uname -m`
 version=`uname -r | awk -F "-" '{print $1}'`
+virt=`virt-what`
 
 yellow " VPS小鸡内脏检测结果如下："
 yellow " 操作系统名称 - $release "
 yellow " 系统内核版本 - $version " 
-yellow " CPU架构名称 - $bit"
-
+yellow " CPU架构名称 - $bit "
+yellow " 虚拟架构类型 - $virt-what "
 
 
 sleep 5s
@@ -114,18 +115,20 @@ fi
 
 if [ $release = "Centos" ]
 	then
-		yum -y install wget curl
-		yum install yum-utils epel-release -y
-		yum install wireguard-dkms wireguard-tools iproute -y
-		yum --enablerepo=elrepo-kernel -y install kernel-ml-headers
+		yum install epel-release -y		
+		yum install -y \
+                https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+                curl -o /etc/yum.repos.d/jdoss-wireguard-epel-7.repo \
+                https://copr.fedorainfracloud.org/coprs/jdoss/wireguard/repo/epel-7/jdoss-wireguard-epel-7.repo
+                yum install -y wireguard-dkms wireguard-tools
 	elif [ $release = "Debian" ]
 	then
 		apt-get update
-		apt-get install sudo net-tools openresolv curl wget -y
+		apt-get install openresolv curl wget -y
 		echo "deb http://deb.debian.org/debian/ unstable main" > /etc/apt/sources.list.d/unstable-wireguard.list
 		printf 'Package: *\nPin: release a=unstable\nPin-Priority: 150\n' > /etc/apt/preferences.d/limit-unstable
 		apt-get install linux-headers-`uname -r` -y
-		apt-get install wireguard-dkms wireguard-tools -y
+		apt-get install wireguard-tools -y
 	elif [ $release = "Ubuntu" ]
 	then
 		apt-get update
@@ -163,18 +166,20 @@ fi
 
 if [ $release = "Centos" ]
 	then
-		yum -y install wget curl
-		yum install yum-utils epel-release -y
-		yum install wireguard-dkms wireguard-tools iproute -y
-		yum --enablerepo=elrepo-kernel -y install kernel-ml-headers
+		yum install epel-release -y		
+		yum install -y \
+                https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+                curl -o /etc/yum.repos.d/jdoss-wireguard-epel-7.repo \
+                https://copr.fedorainfracloud.org/coprs/jdoss/wireguard/repo/epel-7/jdoss-wireguard-epel-7.repo
+                yum install -y wireguard-dkms wireguard-tools
 	elif [ $release = "Debian" ]
 	then
 		apt-get update
-		apt-get install sudo net-tools openresolv curl wget -y
+		apt-get install openresolv curl wget -y
 		echo "deb http://deb.debian.org/debian/ unstable main" > /etc/apt/sources.list.d/unstable-wireguard.list
 		printf 'Package: *\nPin: release a=unstable\nPin-Priority: 150\n' > /etc/apt/preferences.d/limit-unstable
 		apt-get install linux-headers-`uname -r` -y
-		apt-get install wireguard-dkms wireguard-tools -y
+		apt-get install wireguard-tools -y
 	elif [ $release = "Ubuntu" ]
 	then
 		apt-get update
