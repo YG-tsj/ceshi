@@ -44,9 +44,6 @@ yellow "现在开始检查你的系统是否支持"
     fi
     
 yellow " 安装相关依赖："
-apt update
-apt install sudo -y && apt install curl wget -y
-apt install virt-what
 
 bit=`uname -m`
 version=`uname -r | awk -F "-" '{print $1}'`
@@ -56,7 +53,7 @@ yellow " VPS小鸡内脏检测结果如下："
 yellow " 操作系统名称 - $release "
 yellow " 系统内核版本 - $version " 
 yellow " CPU架构名称 - $bit "
-yellow " 虚拟架构类型 - $virt-what "
+yellow " 虚拟架构类型 - $virt "
 
 
 sleep 5s
