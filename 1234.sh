@@ -44,6 +44,7 @@ yellow "现在开始检查你的系统是否支持"
     fi
     
 yellow " 安装相关依赖："
+apt update
 apt install sudo -y && apt install curl wget -y
 apt install virt-what
 
