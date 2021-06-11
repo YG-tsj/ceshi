@@ -16,7 +16,6 @@ blue(){
 }
 
 if [[ ${virt} == "kvm" ]]; then
-echo "ok"
 
 get_char(){
 	SAVEDSTTY=`stty -g`
