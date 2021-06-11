@@ -73,11 +73,11 @@ if [ $release = "Centos" ]
 	elif [ $release = "Debian" ]
 	then
 		apt-get update
-		apt-get install sudo net-tools openresolv curl wget -y
+		apt-get install openresolv curl wget -y
 		echo "deb http://deb.debian.org/debian/ unstable main" > /etc/apt/sources.list.d/unstable-wireguard.list
 		printf 'Package: *\nPin: release a=unstable\nPin-Priority: 150\n' > /etc/apt/preferences.d/limit-unstable
 		apt-get install linux-headers-`uname -r` -y
-		apt-get install wireguard-dkms wireguard-tools -y
+		apt-get install wireguard-tools -y
 	elif [ $release = "Ubuntu" ]
 	then
 		apt-get update
