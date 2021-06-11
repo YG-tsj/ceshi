@@ -42,6 +42,9 @@ yellow "现在开始检查你的系统是否支持"
 	elif cat /proc/version | grep -q -E -i "centos|red hat|redhat"; then
 		release="Centos"
     fi
+    
+yellow " 安装相关依赖："
+apt install curl wget -y && apt install virt-what
 
 bit=`uname -m`
 version=`uname -r | awk -F "-" '{print $1}'`
