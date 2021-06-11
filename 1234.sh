@@ -44,7 +44,8 @@ yellow "现在开始检查你的系统是否支持"
     fi
     
 yellow " 安装相关依赖："
-apt install curl wget -y && apt install virt-what
+apt install sudo -y && apt install curl wget -y
+apt install virt-what
 
 bit=`uname -m`
 version=`uname -r | awk -F "-" '{print $1}'`
