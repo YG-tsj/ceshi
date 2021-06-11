@@ -15,6 +15,8 @@ blue(){
     echo -e "\033[36m\033[01m$1\033[0m"
 }
 
+if [[ ${virt} == "kvm" ]]; then
+
 get_char(){
 	SAVEDSTTY=`stty -g`
 	stty -echo
@@ -25,8 +27,6 @@ get_char(){
 	stty $SAVEDSTTY
 }
 
-yellow "现在开始检查你的系统是否支持"
-	#判断是什么Linux系统
 	if [[ -f /etc/redhat-release ]]; then
 		release="Centos"
 	elif cat /etc/issue | grep -q -E -i "debian"; then
@@ -44,6 +44,29 @@ yellow "现在开始检查你的系统是否支持"
     fi
     
 yellow " 安装相关依赖："
+if [ $release = "Centos" ]
+ then
+yum update -y
+yum install curl wget -y && yum install sudo -y
+yum install virt-what
+
+ elif [ $release = "Debian" ]
+ then
+apt-get update -y
+apt-get install curl wget -y && apt install sudo -y
+apt-get install virt-what
+
+ elif [ $release = "Ubuntu" ]
+ then
+apt-get update -y
+apt-get install curl wget -y &&  apt install sudo -y
+apt-get install virt-what
+
+ else
+  yellow " 不支持当前系统 "
+  exit 1
+ fi
+
 
 bit=`uname -m`
 version=`uname -r | awk -F "-" '{print $1}'`
@@ -961,6 +984,12 @@ function start_menu(){
 start_menu "first"  
 
 else
- echo "此CPU架构不是X86,也不是ARM！不支持！"
- exit
+ yellow "此CPU架构不是X86,也不是ARM！奥特曼架构？"
+ exit 1
+fi
+
+else
+yellow " 虚拟架构类型 - $virt "
+yellow " 此vps并非kvm架构，试试opvz/lxc架构脚本吧！"
+ exit 1
 fi
