@@ -15,7 +15,7 @@ blue(){
     echo -e "\033[36m\033[01m$1\033[0m"
 }
 
-if [[ ${virt} == "kvm" ]]; then
+if [[ $virt-what == "kvm" ]]; then
 
 get_char(){
 	SAVEDSTTY=`stty -g`
