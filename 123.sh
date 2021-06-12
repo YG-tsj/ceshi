@@ -406,13 +406,7 @@ green " 如上方显示IPV4地址：8.…………，则说明成功啦！\n 如
 }
 
 function linux5.11(){
-cd /tmp
-wget --no-check-certificate -c https://kernel.ubuntu.com/~kernel-ppa/mainline/v5.11/amd64/linux-headers-5.11.0-051100_5.11.0-051100.202102142330_all.deb
-wget --no-check-certificate -c https://kernel.ubuntu.com/~kernel-ppa/mainline/v5.11/amd64/linux-headers-5.11.0-051100-generic_5.11.0-051100.202102142330_amd64.deb 
-wget --no-check-certificate -c https://kernel.ubuntu.com/~kernel-ppa/mainline/v5.11/amd64/linux-image-unsigned-5.11.0-051100-generic_5.11.0-051100.202102142330_amd64.deb
-wget --no-check-certificate -c https://kernel.ubuntu.com/~kernel-ppa/mainline/v5.11/amd64/linux-modules-5.11.0-051100-generic_5.11.0-051100.202102142330_amd64.deb
-sudo dpkg -i *.deb
-reboot
+wget -N --no-check-certificate https://raw.githubusercontent.com/YG-tsj/Oracle-warp/main/ccore.sh&& chmod +x ccore.sh && ./ccore.sh
 }
 
 function iptables(){
@@ -476,7 +470,7 @@ systemctl status wg-quick@wgcf
 }
 
 function up(){
-wget -N --no-check-certificate https://raw.githubusercontent.com/YG-tsj/Oracle-warp/main/multiX86.sh && chmod +x multiX86.sh && ./multiX86.sh
+wget -N --no-check-certificate https://raw.githubusercontent.com/YG-tsj/ceshi/main/123.sh && chmod +x 123.sh && ./123.sh
 }
 
 #主菜单
@@ -620,12 +614,8 @@ start_menu "first"
 elif [[ ${bit} == "aarch64" ]]; then
 
 function warp6(){
-
-main=`uname  -r | awk -F . '{print $1 }'`
-minor=`uname -r | awk -F . '{print $2}'`
-
-if [ "$main" -lt 5 ]|| [ "$minor" -lt 0 ]; then 
-	red " 检测到内核版本小于5.0，回到菜单，选择2，更新内核吧"
+if [ "$main" -lt 5 ]|| [ "$minor" -lt 6 ]; then 
+	red " 检测到内核版本小于5.6，回到菜单，选择2，更新内核吧"
 	exit 1
 fi
 
@@ -649,12 +639,8 @@ green " 如上方显示IPV6地址：2a09:…………，则说明成功啦！\n 
 }
 
 function warp64(){
-
-main=`uname  -r | awk -F . '{print $1 }'`
-minor=`uname -r | awk -F . '{print $2}'`
-
-if [ "$main" -lt 5 ]|| [ "$minor" -lt 0 ]; then 
-	red " 检测到内核版本小于5.0，回到菜单，选择2，更新内核吧"
+if [ "$main" -lt 5 ]|| [ "$minor" -lt 6 ]; then 
+	red " 检测到内核版本小于5.6，回到菜单，选择2，更新内核吧"
 	exit 1
 fi
 
@@ -679,12 +665,8 @@ green " 如上方显示IPV4地址：8.…………，IPV6地址：2a09:………
 }
 
 function warp4(){
-
-main=`uname  -r | awk -F . '{print $1 }'`
-minor=`uname -r | awk -F . '{print $2}'`
-
-if [ "$main" -lt 5 ]|| [ "$minor" -lt 0 ]; then 
-	red " 检测到内核版本小于5.0，回到菜单，选择2，更新内核吧"
+if [ "$main" -lt 5 ]|| [ "$minor" -lt 6 ]; then 
+	red " 检测到内核版本小于5.6，回到菜单，选择2，更新内核吧"
 	exit 1
 fi
 
@@ -710,12 +692,8 @@ green " 如上方显示IPV4地址：8.…………，则说明成功啦！\n 如
 }
 
 function warp466(){
-
-main=`uname  -r | awk -F . '{print $1 }'`
-minor=`uname -r | awk -F . '{print $2}'`
-
-if [ "$main" -lt 5 ]|| [ "$minor" -lt 0 ]; then 
-	red " 检测到内核版本小于5.0，回到菜单，选择2，更新内核吧"
+if [ "$main" -lt 5 ]|| [ "$minor" -lt 6 ]; then 
+	red " 检测到内核版本小于5.6，回到菜单，选择2，更新内核吧"
 	exit 1
 fi
 
@@ -740,12 +718,8 @@ green " 如上方显示IPV6地址：2a09:…………，则说明成功啦！\n 
 }
 
 function warp4646(){
-
-main=`uname  -r | awk -F . '{print $1 }'`
-minor=`uname -r | awk -F . '{print $2}'`
-
-if [ "$main" -lt 5 ]|| [ "$minor" -lt 0 ]; then 
-	red " 检测到内核版本小于5.0，回到菜单，选择2，更新内核吧"
+if [ "$main" -lt 5 ]|| [ "$minor" -lt 6 ]; then 
+	red " 检测到内核版本小于5.6，回到菜单，选择2，更新内核吧"
 	exit 1
 fi
 
@@ -771,12 +745,8 @@ green " 如上方显示IPV4地址：8.…………，IPV6地址：2a09:………
 }
 
 function warp464(){
-
-main=`uname  -r | awk -F . '{print $1 }'`
-minor=`uname -r | awk -F . '{print $2}'`
-
-if [ "$main" -lt 5 ]|| [ "$minor" -lt 0 ]; then 
-	red " 检测到内核版本小于5.0，回到菜单，选择2，更新内核吧"
+if [ "$main" -lt 5 ]|| [ "$minor" -lt 6 ]; then 
+	red " 检测到内核版本小于5.6，回到菜单，选择2，更新内核吧"
 	exit 1
 fi
 
@@ -872,7 +842,7 @@ systemctl status wg-quick@wgcf
 }
 
 function up(){
-wget -N --no-check-certificate https://raw.githubusercontent.com/YG-tsj/Oracle-warp/main/multiARM.sh && chmod +x multiARM.sh && ./multiARM.sh
+wget -N --no-check-certificate https://raw.githubusercontent.com/YG-tsj/ceshi/main/123.sh && chmod +x 123.sh && ./123.sh
 }
 
 #主菜单
