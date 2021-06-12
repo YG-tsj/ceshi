@@ -15,9 +15,6 @@ blue(){
     echo -e "\033[36m\033[01m$1\033[0m"
 }
 
-virt=`virt-what`
-if [[ ${virt} == "kvm" ]]; then
-
 get_char(){
 	SAVEDSTTY=`stty -g`
 	stty -echo
@@ -1022,10 +1019,5 @@ start_menu "first"
 
 else
  yellow "此CPU架构不是X86,也不是ARM！奥特曼架构？"
- exit 1
-fi
-
-else
-yellow " 此vps并非kvm架构，试试opvz/lxc架构脚本吧！"
  exit 1
 fi
