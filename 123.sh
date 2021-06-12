@@ -246,8 +246,8 @@ wget -N https://github.com/ViRb3/wgcf/releases/download/v2.2.3/wgcf_2.2.3_linux_
 chmod +x /usr/local/bin/wgcf
 echo | wgcf register
 wgcf generate
-sed -i "5 s/^/PostUp = ip -4 rule add from $(ip addr | egrep 'ens|eth0' | awk -F '/' '{print $1}' | awk 'NR==2 {print $2}') table main\n/" wgcf-profile.conf
-sed -i "6 s/^/PostDown = ip -4 rule delete from $(ip addr | egrep 'ens|eth0' | awk -F '/' '{print $1}' | awk 'NR==2 {print $2}') table main\n/" wgcf-profile.conf
+sed -i "5 s/^/PostUp = ip -4 rule add from $(ip -4 address show | grep inet | grep -v 127.0.0 | awk '{print $2}' | cut -d'/' -f1) table main\n/" wgcf-profile.conf
+sed -i "6 s/^/PostDown = ip -4 rule delete from $(ip -4 address show | grep inet | grep -v 127.0.0 | awk '{print $2}' | cut -d'/' -f1) table main\n/" wgcf-profile.conf
 sed -i 's/engage.cloudflareclient.com/162.159.192.1/g' wgcf-profile.conf
 sed -i '/\:\:\/0/d' wgcf-profile.conf
 sed -i 's/1.1.1.1/9.9.9.9,8.8.8.8/g' wgcf-profile.conf
