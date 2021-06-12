@@ -42,6 +42,11 @@ get_char(){
     fi
 
 
+bit=`uname -m`
+version=`uname -r | awk -F "-" '{print $1}'`
+main=`uname  -r | awk -F . '{print $1 }'`
+minor=`uname -r | awk -F . '{print $2}'`
+
 
 yellow " 安装相关依赖："
 if [ $release = "Centos" ]
@@ -50,15 +55,12 @@ yum update -y
 yum install curl wget -y && yum install sudo -y
 yum install virt-what
 
-bit=`uname -m`
-version=`uname -r | awk -F "-" '{print $1}'`
 virt=`virt-what`
-
 if [[ ${virt} == "kvm" ]]; then
 echo "ok"
 else
 yellow " 虚拟架构类型 - $virt "
-yellow " 此vps并非kvm架构，试试opvz/lxc架构脚本吧！"
+yellow " 此vps并非kvm架构，脚本安装自动退出！"
  exit 1
 fi
 
@@ -68,15 +70,12 @@ apt-get update -y
 apt-get install curl wget -y && apt install sudo -y
 apt-get install virt-what
 
-bit=`uname -m`
-version=`uname -r | awk -F "-" '{print $1}'`
 virt=`virt-what`
-
 if [[ ${virt} == "kvm" ]]; then
 echo "ok"
 else
 yellow " 虚拟架构类型 - $virt "
-yellow " 此vps并非kvm架构，试试opvz/lxc架构脚本吧！"
+yellow " 此vps并非kvm架构，脚本安装自动退出！"
  exit 1
 fi
 
@@ -86,15 +85,12 @@ apt-get update -y
 apt-get install curl wget -y &&  apt install sudo -y
 apt-get install virt-what
 
-bit=`uname -m`
-version=`uname -r | awk -F "-" '{print $1}'`
 virt=`virt-what`
-
 if [[ ${virt} == "kvm" ]]; then
 echo "ok"
 else
 yellow " 虚拟架构类型 - $virt "
-yellow " 此vps并非kvm架构，试试opvz/lxc架构脚本吧！"
+yellow " 此vps并非kvm架构，脚本安装自动退出！"
  exit 1
 fi
 
@@ -104,23 +100,28 @@ fi
  fi
 
 
+yellow " VPS小鸡内脏检测结果如下！："
+yellow "------------------------------------------"
+green " 操作系统名称 - $release "
+green " 系统内核版本 - $version " 
+green " CPU架构名称  - $bit "
+green " 虚拟架构类型 - $virt "
+green " -----------------------------------------------"
+blue " 本脚本仅支持网络效能最高的<内核集成式>WARP安装 "
+blue " 要求系统内核必须在5.6以上（已带更新内核功能） "
 
-
-yellow " VPS小鸡内脏检测结果如下："
-yellow " 操作系统名称 - $release "
-yellow " 系统内核版本 - $version " 
-yellow " CPU架构名称 - $bit "
-yellow " 虚拟架构类型 - $virt "
-
-
-sleep 5s
-echo "按任意键继续，或者按Ctrl+C退出"
+red " 对此无压力的请按任意键继续，对此没兴趣的请按Ctrl+C退出"
 char=$(get_char)
 
 
 if [[ ${bit} == "x86_64" ]]; then
 
 function warp6(){
+yellow " 检测系统内核版本是否大于5.6版本
+if [ "$main" -lt 5 ]|| [ "$minor" -lt 6 ]; then 
+	red " 检测到内核版本小于5.6，回到菜单，选择2，自动更新内核吧"
+	exit 1
+fi
 
 if [ $release = "Centos" ]
 	then
@@ -133,7 +134,7 @@ if [ $release = "Centos" ]
 	elif [ $release = "Debian" ]
 	then
 		apt-get update
-		apt-get install openresolv curl wget -y
+		apt-get install openresolv -y
 		echo "deb http://deb.debian.org/debian/ unstable main" > /etc/apt/sources.list.d/unstable-wireguard.list
 		printf 'Package: *\nPin: release a=unstable\nPin-Priority: 150\n' > /etc/apt/preferences.d/limit-unstable
 		apt-get install linux-headers-`uname -r` -y
@@ -146,7 +147,6 @@ if [ $release = "Centos" ]
 		yellow " 不支持当前系统 "
 		exit 1
 	fi
-
 wget -N https://github.com/ViRb3/wgcf/releases/download/v2.2.3/wgcf_2.2.3_linux_amd64 -O /usr/local/bin/wgcf
 sudo chmod +x /usr/local/bin/wgcf
 echo | wgcf register
@@ -164,11 +164,9 @@ green " 如上方显示IPV6地址：2a09:…………，则说明成功啦！\n 
 }
 
 function warp64(){
-main=`uname  -r | awk -F . '{print $1 }'`
-minor=`uname -r | awk -F . '{print $2}'`
-
-if [ "$main" -lt 5 ]|| [ "$minor" -lt 0 ]; then 
-	red " 检测到内核版本小于5.0，回到菜单，选择2，更新内核吧"
+yellow " 检测系统内核版本是否大于5.6版本
+if [ "$main" -lt 5 ]|| [ "$minor" -lt 6 ]; then 
+	red " 检测到内核版本小于5.6，回到菜单，选择2，自动更新内核吧"
 	exit 1
 fi
 
@@ -179,11 +177,11 @@ if [ $release = "Centos" ]
                 https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
                 curl -o /etc/yum.repos.d/jdoss-wireguard-epel-7.repo \
                 https://copr.fedorainfracloud.org/coprs/jdoss/wireguard/repo/epel-7/jdoss-wireguard-epel-7.repo
-                yum install -y wireguard-dkms wireguard-tools
+                yum install wireguard-tools -y
 	elif [ $release = "Debian" ]
 	then
 		apt-get update
-		apt-get install openresolv curl wget -y
+		apt-get install openresolv -y
 		echo "deb http://deb.debian.org/debian/ unstable main" > /etc/apt/sources.list.d/unstable-wireguard.list
 		printf 'Package: *\nPin: release a=unstable\nPin-Priority: 150\n' > /etc/apt/preferences.d/limit-unstable
 		apt-get install linux-headers-`uname -r` -y
@@ -196,8 +194,7 @@ if [ $release = "Centos" ]
 		yellow " 不支持当前系统 "
 		exit 1
 	fi
-wget -N https://github.com/YG-tsj/EUserv-warp/raw/main/wgcf
-cp wgcf /usr/local/bin/wgcf
+wget -N https://github.com/ViRb3/wgcf/releases/download/v2.2.3/wgcf_2.2.3_linux_amd64 -O /usr/local/bin/wgcf
 chmod +x /usr/local/bin/wgcf
 echo | wgcf register
 wgcf generate
@@ -215,11 +212,9 @@ green " 如上方显示IPV4地址：8.…………，IPV6地址：2a09:………
 }
 
 function warp4(){
-main=`uname  -r | awk -F . '{print $1 }'`
-minor=`uname -r | awk -F . '{print $2}'`
-
-if [ "$main" -lt 5 ]|| [ "$minor" -lt 0 ]; then 
-	red " 检测到内核版本小于5.0，回到菜单，选择2，更新内核吧"
+yellow " 检测系统内核版本是否大于5.6版本
+if [ "$main" -lt 5 ]|| [ "$minor" -lt 6 ]; then 
+	red " 检测到内核版本小于5.6，回到菜单，选择2，自动更新内核吧"
 	exit 1
 fi
 
@@ -230,11 +225,11 @@ if [ $release = "Centos" ]
                 https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
                 curl -o /etc/yum.repos.d/jdoss-wireguard-epel-7.repo \
                 https://copr.fedorainfracloud.org/coprs/jdoss/wireguard/repo/epel-7/jdoss-wireguard-epel-7.repo
-                yum install -y wireguard-dkms wireguard-tools
+                yum install wireguard-tools -y
 	elif [ $release = "Debian" ]
 	then
 		apt-get update
-		apt-get install openresolv curl wget -y
+		apt-get install openresolv -y
 		echo "deb http://deb.debian.org/debian/ unstable main" > /etc/apt/sources.list.d/unstable-wireguard.list
 		printf 'Package: *\nPin: release a=unstable\nPin-Priority: 150\n' > /etc/apt/preferences.d/limit-unstable
 		apt-get install linux-headers-`uname -r` -y
@@ -247,8 +242,7 @@ if [ $release = "Centos" ]
 		yellow " 不支持当前系统 "
 		exit 1
 	fi
-wget -N https://github.com/YG-tsj/EUserv-warp/raw/main/wgcf
-cp wgcf /usr/local/bin/wgcf
+wget -N https://github.com/ViRb3/wgcf/releases/download/v2.2.3/wgcf_2.2.3_linux_amd64 -O /usr/local/bin/wgcf
 chmod +x /usr/local/bin/wgcf
 echo | wgcf register
 wgcf generate
@@ -267,28 +261,28 @@ green " 如上方显示IPV4地址：8.…………，则说明成功啦！\n 如
 }
 
 function warp466(){
-main=`uname  -r | awk -F . '{print $1 }'`
-minor=`uname -r | awk -F . '{print $2}'`
-
-if [ "$main" -lt 5 ]|| [ "$minor" -lt 0 ]; then 
-	red " 检测到内核版本小于5.0，回到菜单，选择2，更新内核吧"
+yellow " 检测系统内核版本是否大于5.6版本
+if [ "$main" -lt 5 ]|| [ "$minor" -lt 6 ]; then 
+	red " 检测到内核版本小于5.6，回到菜单，选择2，自动更新内核吧"
 	exit 1
 fi
 
 if [ $release = "Centos" ]
 	then
-		yum -y install wget curl
-		yum install yum-utils epel-release -y
-		yum install wireguard-dkms wireguard-tools iproute -y
-		yum --enablerepo=elrepo-kernel -y install kernel-ml-headers
+		yum install epel-release -y		
+		yum install -y \
+                https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+                curl -o /etc/yum.repos.d/jdoss-wireguard-epel-7.repo \
+                https://copr.fedorainfracloud.org/coprs/jdoss/wireguard/repo/epel-7/jdoss-wireguard-epel-7.repo
+                yum install wireguard-tools -y
 	elif [ $release = "Debian" ]
 	then
 		apt-get update
-		apt-get install sudo net-tools openresolv curl wget -y
+		apt-get install openresolv -y
 		echo "deb http://deb.debian.org/debian/ unstable main" > /etc/apt/sources.list.d/unstable-wireguard.list
 		printf 'Package: *\nPin: release a=unstable\nPin-Priority: 150\n' > /etc/apt/preferences.d/limit-unstable
 		apt-get install linux-headers-`uname -r` -y
-		apt-get install wireguard-dkms wireguard-tools -y
+		apt-get install wireguard-tools -y
 	elif [ $release = "Ubuntu" ]
 	then
 		apt-get update
@@ -297,8 +291,7 @@ if [ $release = "Centos" ]
 		yellow " 不支持当前系统 "
 		exit 1
 	fi
-wget -N https://github.com/YG-tsj/EUserv-warp/raw/main/wgcf
-cp wgcf /usr/local/bin/wgcf
+wget -N https://github.com/ViRb3/wgcf/releases/download/v2.2.3/wgcf_2.2.3_linux_amd64 -O /usr/local/bin/wgcf
 chmod +x /usr/local/bin/wgcf
 echo | wgcf register
 wgcf generate
@@ -316,28 +309,28 @@ green " 如上方显示IPV6地址：2a09:…………，则说明成功啦！\n 
 }
 
 function warp4646(){
-main=`uname  -r | awk -F . '{print $1 }'`
-minor=`uname -r | awk -F . '{print $2}'`
-
-if [ "$main" -lt 5 ]|| [ "$minor" -lt 0 ]; then 
-	red " 检测到内核版本小于5.0，回到菜单，选择2，更新内核吧"
+yellow " 检测系统内核版本是否大于5.6版本
+if [ "$main" -lt 5 ]|| [ "$minor" -lt 6 ]; then 
+	red " 检测到内核版本小于5.6，回到菜单，选择2，自动更新内核吧"
 	exit 1
 fi
 
 if [ $release = "Centos" ]
 	then
-		yum -y install wget curl
-		yum install yum-utils epel-release -y
-		yum install wireguard-dkms wireguard-tools iproute -y
-		yum --enablerepo=elrepo-kernel -y install kernel-ml-headers
+		yum install epel-release -y		
+		yum install -y \
+                https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+                curl -o /etc/yum.repos.d/jdoss-wireguard-epel-7.repo \
+                https://copr.fedorainfracloud.org/coprs/jdoss/wireguard/repo/epel-7/jdoss-wireguard-epel-7.repo
+                yum install wireguard-tools -y
 	elif [ $release = "Debian" ]
 	then
 		apt-get update
-		apt-get install sudo net-tools openresolv curl wget -y
+		apt-get install openresolv -y
 		echo "deb http://deb.debian.org/debian/ unstable main" > /etc/apt/sources.list.d/unstable-wireguard.list
 		printf 'Package: *\nPin: release a=unstable\nPin-Priority: 150\n' > /etc/apt/preferences.d/limit-unstable
 		apt-get install linux-headers-`uname -r` -y
-		apt-get install wireguard-dkms wireguard-tools -y
+		apt-get install wireguard-tools -y
 	elif [ $release = "Ubuntu" ]
 	then
 		apt-get update
@@ -346,8 +339,7 @@ if [ $release = "Centos" ]
 		yellow " 不支持当前系统 "
 		exit 1
 	fi
-wget -N https://github.com/YG-tsj/EUserv-warp/raw/main/wgcf
-cp wgcf /usr/local/bin/wgcf
+wget -N https://github.com/ViRb3/wgcf/releases/download/v2.2.3/wgcf_2.2.3_linux_amd64 -O /usr/local/bin/wgcf
 chmod +x /usr/local/bin/wgcf
 echo | wgcf register
 wgcf generate
@@ -366,28 +358,28 @@ green " 如上方显示IPV4地址：8.…………，IPV6地址：2a09:………
 }
 
 function warp464(){
-main=`uname  -r | awk -F . '{print $1 }'`
-minor=`uname -r | awk -F . '{print $2}'`
-
-if [ "$main" -lt 5 ]|| [ "$minor" -lt 0 ]; then 
-	red " 检测到内核版本小于5.0，回到菜单，选择2，更新内核吧"
+yellow " 检测系统内核版本是否大于5.6版本
+if [ "$main" -lt 5 ]|| [ "$minor" -lt 6 ]; then 
+	red " 检测到内核版本小于5.6，回到菜单，选择2，自动更新内核吧"
 	exit 1
 fi
 
 if [ $release = "Centos" ]
 	then
-		yum -y install wget curl
-		yum install yum-utils epel-release -y
-		yum install wireguard-dkms wireguard-tools iproute -y
-		yum --enablerepo=elrepo-kernel -y install kernel-ml-headers
+		yum install epel-release -y		
+		yum install -y \
+                https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+                curl -o /etc/yum.repos.d/jdoss-wireguard-epel-7.repo \
+                https://copr.fedorainfracloud.org/coprs/jdoss/wireguard/repo/epel-7/jdoss-wireguard-epel-7.repo
+                yum install wireguard-tools -y
 	elif [ $release = "Debian" ]
 	then
 		apt-get update
-		apt-get install sudo net-tools openresolv curl wget -y
+		apt-get install openresolv -y
 		echo "deb http://deb.debian.org/debian/ unstable main" > /etc/apt/sources.list.d/unstable-wireguard.list
 		printf 'Package: *\nPin: release a=unstable\nPin-Priority: 150\n' > /etc/apt/preferences.d/limit-unstable
 		apt-get install linux-headers-`uname -r` -y
-		apt-get install wireguard-dkms wireguard-tools -y
+		apt-get install wireguard-tools -y
 	elif [ $release = "Ubuntu" ]
 	then
 		apt-get update
@@ -396,8 +388,7 @@ if [ $release = "Centos" ]
 		yellow " 不支持当前系统 "
 		exit 1
 	fi
-wget -N https://github.com/YG-tsj/EUserv-warp/raw/main/wgcf
-cp wgcf /usr/local/bin/wgcf
+wget -N https://github.com/ViRb3/wgcf/releases/download/v2.2.3/wgcf_2.2.3_linux_amd64 -O /usr/local/bin/wgcf
 chmod +x /usr/local/bin/wgcf
 echo | wgcf register
 wgcf generate
