@@ -117,7 +117,7 @@ char=$(get_char)
 if [[ ${bit} == "x86_64" ]]; then
 
 function warp6(){
-yellow " 检测系统内核版本是否大于5.6版本
+yellow " 检测系统内核版本是否大于5.6版本 "
 if [ "$main" -lt 5 ]|| [ "$minor" -lt 6 ]; then 
 	red " 检测到内核版本小于5.6，回到菜单，选择2，自动更新内核吧"
 	exit 1
@@ -164,7 +164,7 @@ green " 如上方显示IPV6地址：2a09:…………，则说明成功啦！\n 
 }
 
 function warp64(){
-yellow " 检测系统内核版本是否大于5.6版本
+yellow " 检测系统内核版本是否大于5.6版本 "
 if [ "$main" -lt 5 ]|| [ "$minor" -lt 6 ]; then 
 	red " 检测到内核版本小于5.6，回到菜单，选择2，自动更新内核吧"
 	exit 1
@@ -212,7 +212,7 @@ green " 如上方显示IPV4地址：8.…………，IPV6地址：2a09:………
 }
 
 function warp4(){
-yellow " 检测系统内核版本是否大于5.6版本
+yellow " 检测系统内核版本是否大于5.6版本 "
 if [ "$main" -lt 5 ]|| [ "$minor" -lt 6 ]; then 
 	red " 检测到内核版本小于5.6，回到菜单，选择2，自动更新内核吧"
 	exit 1
@@ -261,7 +261,7 @@ green " 如上方显示IPV4地址：8.…………，则说明成功啦！\n 如
 }
 
 function warp466(){
-yellow " 检测系统内核版本是否大于5.6版本
+yellow " 检测系统内核版本是否大于5.6版本 "
 if [ "$main" -lt 5 ]|| [ "$minor" -lt 6 ]; then 
 	red " 检测到内核版本小于5.6，回到菜单，选择2，自动更新内核吧"
 	exit 1
@@ -309,7 +309,7 @@ green " 如上方显示IPV6地址：2a09:…………，则说明成功啦！\n 
 }
 
 function warp4646(){
-yellow " 检测系统内核版本是否大于5.6版本
+yellow " 检测系统内核版本是否大于5.6版本 "
 if [ "$main" -lt 5 ]|| [ "$minor" -lt 6 ]; then 
 	red " 检测到内核版本小于5.6，回到菜单，选择2，自动更新内核吧"
 	exit 1
@@ -358,7 +358,7 @@ green " 如上方显示IPV4地址：8.…………，IPV6地址：2a09:………
 }
 
 function warp464(){
-yellow " 检测系统内核版本是否大于5.6版本
+yellow " 检测系统内核版本是否大于5.6版本 "
 if [ "$main" -lt 5 ]|| [ "$minor" -lt 6 ]; then 
 	red " 检测到内核版本小于5.6，回到菜单，选择2，自动更新内核吧"
 	exit 1
