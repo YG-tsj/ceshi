@@ -75,7 +75,7 @@ if [ $release = "Centos" ]
 yum update -y
 yum install curl wget -y && yum install sudo -y
 
-if [[ ${virt} == "kvm" ]]; then
+if [[ $virt == "kvm" ]]; then
 echo "ok"
 else
 yellow " 虚拟架构类型 - $virt "
