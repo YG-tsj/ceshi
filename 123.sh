@@ -57,7 +57,7 @@ yellow "------------------------------------------"
 green " 操作系统名称 - $op "
 green " 系统内核版本 - $version " 
 green " CPU架构名称  - $bit "
-green " 虚拟架构类型 - $vi "
+green " 虚拟架构类型 -$vi "
 green " -----------------------------------------------"
 blue " 本warp脚本仅支持网络效能最高的内核集成模式 "
 blue " 要求系统内核必须在5.6以上（已带更新内核功能） "
@@ -68,8 +68,8 @@ char=$(get_char)
 
 if [[ ${bit} == "x86_64" ]]; then
 
-if [[ ${vi} == "kvm" ]]; then
-yellow "虚拟类型检测通过kvm"
+if [[ ${vi} == " kvm" ]]; then
+echo "kvm"
 else
 yellow " 虚拟架构类型 - $vi "
 yellow " 此vps并非kvm架构，脚本安装自动退出！"
