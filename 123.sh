@@ -46,7 +46,8 @@ bit=`uname -m`
 version=`uname -r | awk -F "-" '{print $1}'`
 main=`uname  -r | awk -F . '{print $1 }'`
 minor=`uname -r | awk -F . '{print $2}'`
-
+op=`hostnamectl | grep -i op | awk -F ':' '{print $2}'`
+virt=`hostnamectl | grep -i vi | awk -F ':' '{print $2}'`
 
 yellow " 安装相关依赖："
 if [ $release = "Centos" ]
@@ -102,7 +103,7 @@ fi
 
 yellow " VPS小鸡内脏检测结果如下！："
 yellow "------------------------------------------"
-green " 操作系统名称 - $release "
+green " 操作系统名称 - $op "
 green " 系统内核版本 - $version " 
 green " CPU架构名称  - $bit "
 green " 虚拟架构类型 - $virt "
