@@ -68,8 +68,8 @@ char=$(get_char)
 
 if [[ ${bit} == "x86_64" ]]; then
 
-if [[ $virt == "kvm" ]]; then
-echo "ok"
+if [[ ${virt} == "kvm" ]]; then
+yellow "虚拟类型检测通过kvm"
 else
 yellow " 虚拟架构类型 - $virt "
 yellow " 此vps并非kvm架构，脚本安装自动退出！"
