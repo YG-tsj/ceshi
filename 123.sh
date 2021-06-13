@@ -54,7 +54,7 @@ vi=`hostnamectl | grep -i vi | awk -F ':' '{print $2}'`
 
 yellow " VPS小鸡内脏检测结果如下！："
 yellow "------------------------------------------"
-green " 操作系统名称 - $op "
+green " 操作系统名称 -$op "
 green " 系统内核版本 - $version " 
 green " CPU架构名称  - $bit "
 green " 虚拟架构类型 -$vi "
