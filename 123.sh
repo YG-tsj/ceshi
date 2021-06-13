@@ -49,56 +49,7 @@ minor=`uname -r | awk -F . '{print $2}'`
 op=`hostnamectl | grep -i op | awk -F ':' '{print $2}'`
 virt=`hostnamectl | grep -i vi | awk -F ':' '{print $2}'`
 
-yellow " 安装相关依赖："
-if [ $release = "Centos" ]
- then
-yum update -y
-yum install curl wget -y && yum install sudo -y
-yum install virt-what
 
-virt=`virt-what`
-if [[ ${virt} == "kvm" ]]; then
-echo "ok"
-else
-yellow " 虚拟架构类型 - $virt "
-yellow " 此vps并非kvm架构，脚本安装自动退出！"
- exit 1
-fi
-
- elif [ $release = "Debian" ]
- then
-apt-get update -y
-apt-get install curl wget -y && apt install sudo -y
-apt-get install virt-what
-
-virt=`virt-what`
-if [[ ${virt} == "kvm" ]]; then
-echo "ok"
-else
-yellow " 虚拟架构类型 - $virt "
-yellow " 此vps并非kvm架构，脚本安装自动退出！"
- exit 1
-fi
-
- elif [ $release = "Ubuntu" ]
- then
-apt-get update -y
-apt-get install curl wget -y &&  apt install sudo -y
-apt-get install virt-what
-
-virt=`virt-what`
-if [[ ${virt} == "kvm" ]]; then
-echo "ok"
-else
-yellow " 虚拟架构类型 - $virt "
-yellow " 此vps并非kvm架构，脚本安装自动退出！"
- exit 1
-fi
-
- else
-  yellow " 不支持当前系统 "
-  exit 1
- fi
 
 
 yellow " VPS小鸡内脏检测结果如下！："
@@ -116,6 +67,54 @@ char=$(get_char)
 
 
 if [[ ${bit} == "x86_64" ]]; then
+
+
+yellow " 安装相关依赖："
+if [ $release = "Centos" ]
+ then
+yum update -y
+yum install curl wget -y && yum install sudo -y
+
+if [[ ${virt} == "kvm" ]]; then
+echo "ok"
+else
+yellow " 虚拟架构类型 - $virt "
+yellow " 此vps并非kvm架构，脚本安装自动退出！"
+ exit 1
+fi
+
+ elif [ $release = "Debian" ]
+ then
+apt-get update -y
+apt-get install curl wget -y && apt install sudo -y
+
+if [[ ${virt} == "kvm" ]]; then
+echo "ok"
+else
+yellow " 虚拟架构类型 - $virt "
+yellow " 此vps并非kvm架构，脚本安装自动退出！"
+ exit 1
+fi
+
+ elif [ $release = "Ubuntu" ]
+ then
+apt-get update -y
+apt-get install curl wget -y &&  apt install sudo -y
+
+if [[ ${virt} == "kvm" ]]; then
+echo "ok"
+else
+yellow " 虚拟架构类型 - $virt "
+yellow " 此vps并非kvm架构，脚本安装自动退出！"
+ exit 1
+fi
+
+ else
+  yellow " 不支持当前系统 "
+  exit 1
+ fi
+
+
 
 function warp6(){
 yellow " 检测系统内核版本是否大于5.6版本 "
