@@ -34,15 +34,27 @@ active)
      WireGuard_Status_zh=$(red "未运行")
 esac
 
+WARPIPv4Status=$(curl -s4 https://www.cloudflare.com/cdn-cgi/trace | grep warp | cut -d= -f2)
+    case ${WARPIPv4Status} in
+    on)
+        WARPIPv4Status=${green "WARP已开启，$(wget -qO- ipv4.ip.sb) "}
+        ;;
+    plus)
+        WARP_IPv4_Status_zh="${WARP_IPv4_Status_en}"
+        ;;
+    off)
+        WARPIPv4Status=${yellow "WARP未开启，$(wget -qO- ipv4.ip.sb) "}
+        ;;
+    *)
+        WARP_IPv4_Status_zh="${FontColor_Red}未连接${FontColor_Suffix}"
+    esac
+
 
 
 Print_ALL_Status_menu() {
-blue " -----------------------"
-blue "WARP 客户端\t: ${WARP_Client_Status_zh}"
-blue "SOCKS5 状态\t: ${WARP_Proxy_Status_zh}"
 blue "-----------------------"
-blue "WireGuard 状态\t: ${WireGuard_Status_zh}"
-blue "IPv4 网络状态\t: ${WARP_IPv4_Status_zh}"
+blue "WARP运行状态\t: ${WireGuard_Status_zh}"
+blue "IPv4 网络状态\t: ${WARPIPv4Status}"
 blue "IPv6 网络状态\t: ${WARP_IPv6_Status_zh}"
 blue "-----------------------"
 }
