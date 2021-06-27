@@ -26,7 +26,6 @@ rred(){
 
 
 
-WireGuardStatus() {
 warpwg=$(systemctl status wg-quick@wgcf | grep Active | awk 'NR==1 {print $2}')
 case ${warpwg} in
 active)
@@ -34,28 +33,6 @@ active)
      ;;
 *)
      warpwg=yellow " 未运行 "
-     ;;
 esac
-}
-
-function start_menu() {
-  yellow " -----------------------
- WARP 客户端\t: ${WARP_Client_Status_zh}
- SOCKS5 状态\t: ${WARP_Proxy_Status_zh}
- -----------------------
- 1. WireGuard 状态: ${WireGuardStatus}
- IPv4 网络状态\t: ${WARP_IPv4_Status_zh}
- IPv6 网络状态\t: ${WARP_IPv6_Status_zh}
-------------------------------
-"
-echo
-    read -p "请输入数字:" menuNumberInput
-    case "$menuNumberInput" in
-     1 )
-           WireGuardStatus
-	;;
-     esac
-}
 
 
-start_menu "first" 
