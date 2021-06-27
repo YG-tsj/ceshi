@@ -28,11 +28,12 @@ rred(){
 warpwg=$(systemctl is-active wg-quick@wgcf)
 case ${warpwg} in
 active)
-     WireGuard_Status_zh=$(green "运行中")
+     WireGuardStatus=$(green "运行中")
      ;;
 *)
-     WireGuard_Status_zh=$(red "未运行")
+     WireGuardStatus=$(red "未运行")
 esac
+
 
 v4=`wget -qO- ipv4.ip.sb`
 WARPIPv4Status=$(curl -s4 https://www.cloudflare.com/cdn-cgi/trace | grep warp | cut -d= -f2)
@@ -40,23 +41,31 @@ WARPIPv4Status=$(curl -s4 https://www.cloudflare.com/cdn-cgi/trace | grep warp |
     on)
         WARPIPv4Status=$(green "WARP已开启,地址$v4 ")
         ;;
-    plus)
-        WARP_IPv4_Status_zh="${WARP_IPv4_Status_en}"
-        ;;
     off)
         WARPIPv4Status=$(yellow "WARP未开启，地址$v4 ")
         ;;
     *)
-        WARP_IPv4_Status_zh="${FontColor_Red}未连接${FontColor_Suffix}"
+        WARPIPv4Status=$(red "无IPV4 ")
     esac
-
-
+    
+v6=`wget -qO- ipv6.ip.sb`
+WARPIPv6Status=$(curl -s6 https://www.cloudflare.com/cdn-cgi/trace | grep warp | cut -d= -f2)
+    case ${WARPIPv6Status} in
+    on)
+        WARPIPv6Status=$(green "WARP已开启,IP地址：$v6 ")
+        ;;
+    off)
+        WARPIPv6Status=$(yellow "WARP未开启，IP地址：$v6 ")
+        ;;
+    *)
+        WARPIPv6Status=$(red "无IPV6 ")
+    esac
 
 Print_ALL_Status_menu() {
 blue "-----------------------"
-blue "WARP运行状态\t: ${WireGuard_Status_zh}"
+blue "WARP运行状态\t: ${WireGuardStatus}"
 blue "IPv4 网络状态\t: ${WARPIPv4Status}"
-blue "IPv6 网络状态\t: ${WARP_IPv6_Status_zh}"
+blue "IPv6 网络状态\t: ${WARPIPv6Status}"
 blue "-----------------------"
 }
 
