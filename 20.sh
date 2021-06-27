@@ -44,7 +44,7 @@ blue "-----------------------"
 blue "WireGuard 状态\t: ${WireGuard_Status_zh}"
 blue "IPv4 网络状态\t: ${WARP_IPv4_Status_zh}"
 blue "IPv6 网络状态\t: ${WARP_IPv6_Status_zh}"
-blue -----------------------"
+blue "-----------------------"
 }
 
 function start_menu(){
