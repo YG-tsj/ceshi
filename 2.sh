@@ -37,3 +37,15 @@ active)
      ;;
 esac
 }
+
+Print_ALL_Status_menu() {
+  yellow " -----------------------
+ WARP 客户端\t: ${WARP_Client_Status_zh}
+ SOCKS5 状态\t: ${WARP_Proxy_Status_zh}
+ -----------------------
+ WireGuard 状态: ${WireGuardStatus}
+ IPv4 网络状态\t: ${WARP_IPv4_Status_zh}
+ IPv6 网络状态\t: ${WARP_IPv6_Status_zh}
+------------------------------
+"
+
