@@ -37,13 +37,13 @@ esac
 WARPIPv4Status=$(curl -s4 https://www.cloudflare.com/cdn-cgi/trace | grep warp | cut -d= -f2)
     case ${WARPIPv4Status} in
     on)
-        WARPIPv4Status=${green "WARP已开启，$(wget -qO- ipv4.ip.sb) "}
+        WARPIPv4Status=${green "WARP已开启，wget -qO- ipv4.ip.sb "}
         ;;
     plus)
         WARP_IPv4_Status_zh="${WARP_IPv4_Status_en}"
         ;;
     off)
-        WARPIPv4Status=${yellow "WARP未开启，$(wget -qO- ipv4.ip.sb) "}
+        WARPIPv4Status=${yellow "WARP未开启，wget -qO- ipv4.ip.sb "}
         ;;
     *)
         WARP_IPv4_Status_zh="${FontColor_Red}未连接${FontColor_Suffix}"
