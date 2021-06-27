@@ -31,13 +31,13 @@ active)
      WireGuard_Status_zh=$(green "运行中")
      ;;
 *)
-     WireGuard_Status_zh=red "未运行"
+     WireGuard_Status_zh=$(red "未运行")
 esac
 
 
 
 Print_ALL_Status_menu() {
-blue " -----------------------
+echo -e " -----------------------
  WARP 客户端\t: ${WARP_Client_Status_zh}
  SOCKS5 状态\t: ${WARP_Proxy_Status_zh}
  -----------------------
