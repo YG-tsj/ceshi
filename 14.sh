@@ -37,7 +37,7 @@ esac
 
 
 Print_ALL_Status_menu() {
-echo -e " -----------------------
+blue " -----------------------
  WARP 客户端\t: ${WARP_Client_Status_zh}
  SOCKS5 状态\t: ${WARP_Proxy_Status_zh}
  -----------------------
