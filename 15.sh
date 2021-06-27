@@ -28,10 +28,10 @@ rred(){
 warpwg=$(systemctl is-active wg-quick@wgcf)
 case ${warpwg} in
 active)
-     WireGuard_Status_zh="运行中"
+     WireGuard_Status_zh=green "运行中"
      ;;
 *)
-     WireGuard_Status_zh="未运行"
+     WireGuard_Status_zh=red "未运行"
 esac
 
 
