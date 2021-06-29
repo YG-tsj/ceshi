@@ -114,9 +114,9 @@ if [[ ${v66} == "1" ]]; then
  *) 
  WARPIPv6Status=$(red "无IPV6 ") 
  esac 
+elif [[ ${v66} == "0" ]]; then
+green " ---VPS扫描中---> "
 
-else  
- yellow "ok"
  fi 
 
 Print_ALL_Status_menu() {
