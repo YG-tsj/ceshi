@@ -111,7 +111,7 @@ if [[ ${v66} == "1" ]]; then
  off) 
  WARPIPv6Status=$(yellow "WARP未开启，当前IPV6地址：$v6 ") 
  esac 
-elif [[ ${v66} == "0" ]]; then
+else
 WARPIPv6Status=$(red "无IPV6 ")
 
  fi 
