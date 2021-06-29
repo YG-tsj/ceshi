@@ -99,7 +99,7 @@ WARPIPv4Status=$(curl -s4 https://www.cloudflare.com/cdn-cgi/trace | grep warp |
         WARPIPv4Status=$(red "无IPV4 ")
     esac
 
-V66=`ping6 240c::6666 -c 1 | grep received | awk 'NR==1 {print $4}'`
+v66=`ping6 240c::6666 -c 1 | grep received | awk 'NR==1 {print $4}'`
 
 if [[ ${v66} == "1" ]]; then
  v6=`wget -qO- ipv6.ip.sb` 
