@@ -101,7 +101,7 @@ WARPIPv4Status=$(curl -s4 https://www.cloudflare.com/cdn-cgi/trace | grep warp |
 
 V66=`ping6 240c::6666 -c 1 | grep received | awk 'NR==1 {print $4}'`
 
-if [[ ${v66} == " 1" ]]; then
+if [[ ${v66} == "1" ]]; then
  v6=`wget -qO- ipv6.ip.sb` 
  WARPIPv6Status=$(curl -s6 https://www.cloudflare.com/cdn-cgi/trace | grep warp | cut -d= -f2) 
  case ${WARPIPv6Status} in 
@@ -116,7 +116,7 @@ if [[ ${v66} == " 1" ]]; then
  esac 
 
 else  
-exit 1 
+ 
  fi 
 
 Print_ALL_Status_menu() {
