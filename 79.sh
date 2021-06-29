@@ -116,7 +116,7 @@ if [[ ${v66} == "1" ]]; then
  esac 
 
 else  
- 
+ yellow "ok"
  fi 
 
 Print_ALL_Status_menu() {
