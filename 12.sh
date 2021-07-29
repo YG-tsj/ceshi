@@ -294,57 +294,37 @@ function start_menu(){
     
     white " ==================一、VPS相关调整选择（更新中）==========================================" 
     
-    green " 1. 永久开启甲骨文VPS的ubuntu系统所有端口 "
-    
-    green " 2. 更新系统内核 "
-    
-    green " 3. 开启原生BBR加速 "
-    
-    green " 4. 检测奈飞Netflix是否解锁 "
+    green " 1. 检测奈飞Netflix是否解锁 "
     
     white " ==================二、“内核集成模式”WARP功能选择（更新中）======================================"
     
     yellow " ----VPS原生IP数------------------------------------添加WARP虚拟IP的位置--------------"
     
-    green " 5. 纯IPV4的VPS。                                   添加WARP虚拟IPV6               "
+    green " 2. 纯IPV6的VPS。                                  添加WARP虚拟IPV6               "
     
-    green " 6. 纯IPV4的VPS。                                   添加WARP虚拟IPV4+虚拟IPV6      "
+    green " 3. 纯IPV6的VPS。                                  添加WARP虚拟IPV4+虚拟IPV6       "
     
-    green " 7. 纯IPV4的VPS。                                   添加WARP虚拟IPV4              "
-    
-    green " 8. 双栈IPV4+IPV6的VPS。                            添加WARP虚拟IPV6               "
-    
-    green " 9. 双栈IPV4+IPV6的VPS。                            添加WARP虚拟IPV4+虚拟IPV6      "
-    
-    green " 10. 双栈IPV4+IPV6的VPS。                           添加WARP虚拟IPV4               "
-    
-    green " 11. 纯IPV6的VPS。                                  添加WARP虚拟IPV6               "
-    
-    green " 12. 纯IPV6的VPS。                                  添加WARP虚拟IPV4+虚拟IPV6       "
-    
-    green " 13. 纯IPV6的VPS。                                  添加WARP虚拟IPV4               "
+    green " 4. 纯IPV6的VPS。                                  添加WARP虚拟IPV4               "
     
     white " ------------------------------------------------------------------------------------------------"
     
-    green " 14. 统一DNS功能（建议选择） "
+    green " 5. 永久关闭WARP功能 "
     
-    green " 15. 永久关闭WARP功能 "
+    green " 6. 自动开启WARP功能 "
     
-    green " 16. 自动开启WARP功能 "
+    green " 7. 有IPV4：更新脚本 "
     
-    green " 17. 有IPV4：更新脚本 "
-    
-    green " 18. 无IPV4：更新脚本 "
+    green " 8. 无IPV4：更新脚本 "
     
     white " ==================三、代理协议脚本选择（更新中）==========================================="
     
-    green " 19.使用mack-a脚本（支持Xray, V2ray） "
+    green " 9. 使用mack-a脚本（支持Xray, V2ray） "
     
-    green " 20.使用phlinhng脚本（支持Xray, Trojan-go, SS+v2ray-plugin） "
+    green " 10. 使用phlinhng脚本（支持Xray, Trojan-go, SS+v2ray-plugin） "
     
     white " ============================================================================================="
     
-    green " 21. 重启VPS实例，请重新连接SSH "
+    green " 11. 重启VPS实例，请重新连接SSH "
     
     white " ===============================================================================================" 
     
@@ -353,67 +333,37 @@ function start_menu(){
     echo
     read -p "请输入数字:" menuNumberInput
     case "$menuNumberInput" in
-        1 )
-           iptables
-	;;
-	2 )
-           upcore
-	;;
-        3 )
-           BBR
-	;;
-	4 )
+	1 )
            Netflix
 	;;    
-        5 )
+        2 )
            warp6
 	;;
-        6 )
+        3 )
            warp64
 	;;
-        7 )
+        4 )
            warp4
 	;;
-        8 )
-           warp466
-	;;
-        9 )
-           warp4646
-	;;
-	10 )
-           warp464
-	;;
-	11 )
-           wo66
-	;;
-	12 )
-           wo646
-	;;
-	13 )
-           wo64
-	;;
-	14 )
-           dns
-	;;
-	15 )
+	5 )
            cwarp
 	;;
-	16 )
+	6 )
            owarp
 	;;
-	17 )
+	7 )
            up4
 	;;
-	18 )
+	8 )
            up6
 	;;
-	19 )
+	9 )
            macka
 	;;
-	20 )
+	10 )
            phlinhng
 	;;
-	21 )
+	11 )
            reboot
 	;;
         0 )
