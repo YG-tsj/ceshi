@@ -300,11 +300,11 @@ function start_menu(){
     
     yellow " ----VPS原生IP数------------------------------------添加WARP虚拟IP的位置--------------"
     
-    green " 2. 纯IPV6的VPS。                                  添加WARP虚拟IPV6               "
+    green " 2. 纯IPV6的VPS。                                  添加WARP虚拟IPV4               "
     
     green " 3. 纯IPV6的VPS。                                  添加WARP虚拟IPV4+虚拟IPV6       "
     
-    green " 4. 纯IPV6的VPS。                                  添加WARP虚拟IPV4               "
+    green " 4. 纯IPV6的VPS。                                  添加WARP虚拟IPV6               "
     
     white " ------------------------------------------------------------------------------------------------"
     
@@ -337,13 +337,13 @@ function start_menu(){
            Netflix
 	;;    
         2 )
-           warp6
+           w64
 	;;
         3 )
-           warp64
+           w646
 	;;
         4 )
-           warp4
+           w66
 	;;
 	5 )
            cwarp
