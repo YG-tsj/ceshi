@@ -235,6 +235,62 @@ yellow " 检测是否成功启动（IPV4+IPV6）双栈Warp！\n 显示IPV4地址
 green " 如上方显示IPV4地址：8.…………，IPV6地址：2a09:…………，则说明成功啦！\n 如上方IPV4无IP显示,IPV6显示本地IP（说明申请WGCF账户失败），请重复运行该脚本吧，直到成功为止！！！"
 }
 
+function w66(){
+
+if [ $release = "Centos" ]
+	then
+	        yum update -y
+                yum install curl wget -y && yum install sudo -y
+		yum install epel-release -y		
+		yum install -y \
+                https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+                curl -o /etc/yum.repos.d/jdoss-wireguard-epel-7.repo \
+                https://copr.fedorainfracloud.org/coprs/jdoss/wireguard/repo/epel-7/jdoss-wireguard-epel-7.repo
+                yum install wireguard-tools -y
+	elif [ $release = "Debian" ]
+	then
+		apt update && apt install curl sudo lsb-release iptables -y
+		apt-get install curl wget -y &&  apt install sudo -y
+                echo "deb http://deb.debian.org/debian $(lsb_release -sc)-backports main" | sudo tee /etc/apt/sources.list.d/backports.list
+                apt update
+                apt -y --no-install-recommends install openresolv dnsutils wireguard-tools
+	elif [ $release = "Ubuntu" ]
+	then
+		apt-get update -y
+		apt-get install curl wget -y &&  apt install sudo -y
+		apt -y --no-install-recommends install openresolv dnsutils wireguard-tools
+	else
+		yellow " 不支持当前系统 "
+		exit 1
+	fi
+wget -N -6 https://cdn.jsdelivr.net/gh/YG-tsj/EUserv-warp/wgcf
+wget -N -6 https://cdn.jsdelivr.net/gh/YG-tsj/EUserv-warp/wireguard-go
+cp wireguard-go /usr/bin
+cp wgcf /usr/local/bin/wgcf
+chmod +x /usr/local/bin/wgcf
+chmod +x /usr/bin/wireguard-go
+echo | wgcf register
+until [ $? -eq 0 ]
+do
+sleep 1s
+echo | wgcf register
+done
+wgcf generate
+sed -i "5 s/^/PostUp = ip -6 rule add from $rv6 table main\n/" wgcf-profile.conf
+sed -i "6 s/^/PostDown = ip -6 rule delete from $rv6 table main\n/" wgcf-profile.conf
+sed -i 's/engage.cloudflareclient.com/2606:4700:d0::a29f:c001/g' wgcf-profile.conf
+sed -i '/0\.0\.0\.0\/0/d' wgcf-profile.conf
+sed -i 's/1.1.1.1/2001:4860:4860::8888,8.8.8.8/g' wgcf-profile.conf
+cp wgcf-account.toml /etc/wireguard/wgcf-account.toml
+cp wgcf-profile.conf /etc/wireguard/wgcf.conf
+systemctl enable wg-quick@wgcf
+systemctl start wg-quick@wgcf
+rm -f warp64* wgcf* wireguard-go*
+grep -qE '^[ ]*label[ ]*2002::/16[ ]*2' /etc/gai.conf || echo 'label 2002::/16   2' | sudo tee -a /etc/gai.conf
+yellow " 检测是否成功启动Warp！\n 显示IPV6地址：$(wget -qO- -6 ip.gs) "
+green " 如上方显示IPV6地址：2a09:…………，则说明成功！\n 如上方IPV6显示本地IP，则说明失败喽！ "
+}
+
 
 function cwarp(){
 systemctl stop wg-quick@wgcf
