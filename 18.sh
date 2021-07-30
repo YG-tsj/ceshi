@@ -227,6 +227,8 @@ sudo sed -i "6 s/^/PostDown = ip -6 rule delete from $rv6 table main\n/" wgcf-pr
 sudo sed -i 's/engage.cloudflareclient.com/2606:4700:d0::a29f:c001/g' wgcf-profile.conf
 sudo cp wgcf-account.toml /etc/wireguard/wgcf-account.toml
 sudo cp wgcf-profile.conf /etc/wireguard/wgcf.conf
+sudo ln -s /usr/bin/resolvectl /usr/local/bin/resolvconf
+sudo ln -sf /lib/systemd/system/systemd-resolved.service /etc/systemd/system/dbus-org.freedesktop.resolve1.service
 sudo systemctl enable wg-quick@wgcf
 sudo systemctl start wg-quick@wgcf
 sudo rm -f warp64* wgcf* wireguard-go*
