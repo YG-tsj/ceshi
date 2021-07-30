@@ -209,10 +209,8 @@ if [ $release = "Centos" ]
 		yellow " 不支持当前系统 "
 		exit 1
 	fi
-sudo wget -N -6 https://cdn.jsdelivr.net/gh/YG-tsj/EUserv-warp/wgcf
-sudo wget -N -6 https://cdn.jsdelivr.net/gh/YG-tsj/EUserv-warp/wireguard-go
-sudo cp wireguard-go /usr/bin
-sudo cp wgcf /usr/local/bin/wgcf
+sudo wget -N -6 https://cdn.jsdelivr.net/gh/YG-tsj/EUserv-warp/wgcf -O /usr/local/bin/wgcf
+sudo wget -N -6 https://cdn.jsdelivr.net/gh/YG-tsj/EUserv-warp/wireguard-go -O /usr/bin/wireguard-go
 sudo chmod +x /usr/local/bin/wgcf
 sudo chmod +x /usr/bin/wireguard-go
 sudo echo | wgcf register
