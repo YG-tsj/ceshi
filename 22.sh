@@ -47,6 +47,21 @@ if [ $release = "Centos" ]
             red " 不支持Centos系统，请更换Debian或Ubuntu "
       exit 1
 	   fi
+	   
+	if ! type curl >/dev/null 2>&1; then
+	   yellow "curl 未安装，安装中 "
+           sudo apt-get install curl -y || yum install curl -y 
+           else
+           green "curl 已安装，继续 "
+fi
+
+        if ! type wget >/dev/null 2>&1; then
+           yellow "wget 未安装 安装中 "
+           sudo apt-get install wget -y || yum install wget -y 
+           else
+           green "wget 已安装，继续 "
+fi  
+	   
 bit=`uname -m`
 version=`uname -r | awk -F "-" '{print $1}'`
 main=`uname  -r | awk -F . '{print $1 }'`
@@ -136,15 +151,13 @@ function w64(){
 
 	if [ $release = "Debian" ]
 	then
-		sudo apt update && apt install curl sudo lsb-release iptables -y
-		sudo apt-get install curl wget -y &&  apt install sudo -y
+		sudo apt update -y && apt install sudo -y && sudo lsb-release iptables -y
                 sudo echo "deb http://deb.debian.org/debian $(lsb_release -sc)-backports main" | sudo tee /etc/apt/sources.list.d/backports.list
                 sudo apt update
                 sudo apt -y --no-install-recommends install openresolv dnsutils wireguard-tools
 	elif [ $release = "Ubuntu" ]
 	then
-		sudo apt-get update -y
-		sudo apt-get install curl wget -y &&  apt install sudo -y
+		sudo apt-get update -y &&  apt install sudo -y
 		sudo apt -y --no-install-recommends install openresolv dnsutils wireguard-tools
 	fi
 sudo wget -N -6 https://cdn.jsdelivr.net/gh/YG-tsj/EUserv-warp/wgcf -O /usr/local/bin/wgcf
@@ -174,15 +187,13 @@ function w646(){
 	    
 	if [ $release = "Debian" ]
 	then
-		sudo apt update && apt install curl sudo lsb-release iptables -y
-		sudo apt-get install curl wget -y &&  apt install sudo -y
+		sudo apt update -y && apt install sudo -y && sudo lsb-release iptables -y
                 sudo echo "deb http://deb.debian.org/debian $(lsb_release -sc)-backports main" | sudo tee /etc/apt/sources.list.d/backports.list
                 sudo apt update
                 sudo apt -y --no-install-recommends install openresolv dnsutils wireguard-tools
 	elif [ $release = "Ubuntu" ]
 	then
-		sudo apt-get update -y
-		sudo apt-get install curl wget -y &&  apt install sudo -y
+		sudo apt-get update -y &&  apt install sudo -y
 		sudo apt -y --no-install-recommends install openresolv dnsutils wireguard-tools
 	fi
 sudo wget -N -6 https://cdn.jsdelivr.net/gh/YG-tsj/EUserv-warp/wgcf -O /usr/local/bin/wgcf
@@ -212,15 +223,13 @@ function w66(){
 
 	if [ $release = "Debian" ]
 	then
-		sudo apt update && apt install curl sudo lsb-release iptables -y
-		sudo apt-get install curl wget -y &&  apt install sudo -y
+		sudo apt update -y && apt install sudo -y && sudo lsb-release iptables -y
                 sudo echo "deb http://deb.debian.org/debian $(lsb_release -sc)-backports main" | sudo tee /etc/apt/sources.list.d/backports.list
                 sudo apt update
                 sudo apt -y --no-install-recommends install openresolv dnsutils wireguard-tools
 	elif [ $release = "Ubuntu" ]
 	then
-		sudo apt-get update -y
-		sudo apt-get install curl wget -y &&  apt install sudo -y
+		sudo apt-get update -y &&  apt install sudo -y
 		sudo apt -y --no-install-recommends install openresolv dnsutils wireguard-tools
 	fi
 sudo wget -N -6 https://cdn.jsdelivr.net/gh/YG-tsj/EUserv-warp/wgcf -O /usr/local/bin/wgcf
