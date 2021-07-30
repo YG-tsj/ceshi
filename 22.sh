@@ -44,7 +44,7 @@ rred(){
 
 if [ $release = "Centos" ]
 	then
-            red " 不支持Centos系统，请更换成Debian或Ubuntu "
+            red " 不支持Centos系统，请更换Debian或Ubuntu "
       exit 1
 	   fi
 bit=`uname -m`
@@ -134,17 +134,7 @@ if [[ ${bit} == "x86_64" ]]; then
 
 function w64(){
 
-if [ $release = "Centos" ]
-	then
-	        sudo yum update -y
-                sudo yum install curl wget -y && yum install sudo -y
-		sudo yum install epel-release -y		
-		sudo yum install -y \
-                https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
-                sudo curl -o /etc/yum.repos.d/jdoss-wireguard-epel-7.repo \
-                https://copr.fedorainfracloud.org/coprs/jdoss/wireguard/repo/epel-7/jdoss-wireguard-epel-7.repo
-                sudo yum install wireguard-tools -y
-	elif [ $release = "Debian" ]
+	if [ $release = "Debian" ]
 	then
 		sudo apt update && apt install curl sudo lsb-release iptables -y
 		sudo apt-get install curl wget -y &&  apt install sudo -y
@@ -156,14 +146,9 @@ if [ $release = "Centos" ]
 		sudo apt-get update -y
 		sudo apt-get install curl wget -y &&  apt install sudo -y
 		sudo apt -y --no-install-recommends install openresolv dnsutils wireguard-tools
-	else
-		yellow " 不支持当前系统 "
-		exit 1
 	fi
-sudo wget -N -6 https://cdn.jsdelivr.net/gh/YG-tsj/EUserv-warp/wgcf
-sudo wget -N -6 https://cdn.jsdelivr.net/gh/YG-tsj/EUserv-warp/wireguard-go
-sudo cp wireguard-go /usr/bin
-sudo cp wgcf /usr/local/bin/wgcf
+sudo wget -N -6 https://cdn.jsdelivr.net/gh/YG-tsj/EUserv-warp/wgcf -O /usr/local/bin/wgcf
+sudo wget -N -6 https://cdn.jsdelivr.net/gh/YG-tsj/EUserv-warp/wireguard-go -O /usr/bin/wireguard-go
 sudo chmod +x /usr/local/bin/wgcf
 sudo chmod +x /usr/bin/wireguard-go
 sudo echo | wgcf register
@@ -186,12 +171,8 @@ green " 如上方显示IPV4地址：8.…………，则说明成功啦！\n 如
 }
 
 function w646(){
-
-if [ $release = "Centos" ]
-	then
-            red " 不支持Centos系统，请更换成Debian或Ubuntu "
 	    
-	elif [ $release = "Debian" ]
+	if [ $release = "Debian" ]
 	then
 		sudo apt update && apt install curl sudo lsb-release iptables -y
 		sudo apt-get install curl wget -y &&  apt install sudo -y
@@ -203,9 +184,6 @@ if [ $release = "Centos" ]
 		sudo apt-get update -y
 		sudo apt-get install curl wget -y &&  apt install sudo -y
 		sudo apt -y --no-install-recommends install openresolv dnsutils wireguard-tools
-	else
-		yellow " 不支持当前系统 "
-		exit 1
 	fi
 sudo wget -N -6 https://cdn.jsdelivr.net/gh/YG-tsj/EUserv-warp/wgcf -O /usr/local/bin/wgcf
 sudo wget -N -6 https://cdn.jsdelivr.net/gh/YG-tsj/EUserv-warp/wireguard-go -O /usr/bin/wireguard-go
@@ -223,8 +201,6 @@ sudo sed -i "6 s/^/PostDown = ip -6 rule delete from $rv6 table main\n/" wgcf-pr
 sudo sed -i 's/engage.cloudflareclient.com/2606:4700:d0::a29f:c001/g' wgcf-profile.conf
 sudo cp wgcf-account.toml /etc/wireguard/wgcf-account.toml
 sudo cp wgcf-profile.conf /etc/wireguard/wgcf.conf
-sudo ln -s /usr/bin/resolvectl /usr/local/bin/resolvconf
-sudo ln -sf /lib/systemd/system/systemd-resolved.service /etc/systemd/system/dbus-org.freedesktop.resolve1.service
 sudo systemctl enable wg-quick@wgcf
 sudo systemctl start wg-quick@wgcf
 sudo grep -qE '^[ ]*precedence[ ]*::ffff:0:0/96[ ]*100' /etc/gai.conf || echo 'precedence ::ffff:0:0/96  100' | sudo tee -a /etc/gai.conf
@@ -234,17 +210,7 @@ green " 如上方显示IPV4地址：8.…………，IPV6地址：2a09:………
 
 function w66(){
 
-if [ $release = "Centos" ]
-	then
-	        sudo yum update -y
-                sudo yum install curl wget -y && yum install sudo -y
-		sudo yum install epel-release -y		
-		sudo yum install -y \
-                https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
-                sudo curl -o /etc/yum.repos.d/jdoss-wireguard-epel-7.repo \
-                https://copr.fedorainfracloud.org/coprs/jdoss/wireguard/repo/epel-7/jdoss-wireguard-epel-7.repo
-                sudo yum install wireguard-tools -y
-	elif [ $release = "Debian" ]
+	if [ $release = "Debian" ]
 	then
 		sudo apt update && apt install curl sudo lsb-release iptables -y
 		sudo apt-get install curl wget -y &&  apt install sudo -y
@@ -256,14 +222,9 @@ if [ $release = "Centos" ]
 		sudo apt-get update -y
 		sudo apt-get install curl wget -y &&  apt install sudo -y
 		sudo apt -y --no-install-recommends install openresolv dnsutils wireguard-tools
-	else
-		yellow " 不支持当前系统 "
-		exit 1
 	fi
-sudo wget -N -6 https://cdn.jsdelivr.net/gh/YG-tsj/EUserv-warp/wgcf
-sudo wget -N -6 https://cdn.jsdelivr.net/gh/YG-tsj/EUserv-warp/wireguard-go
-sudo cp wireguard-go /usr/bin
-sudo cp wgcf /usr/local/bin/wgcf
+sudo wget -N -6 https://cdn.jsdelivr.net/gh/YG-tsj/EUserv-warp/wgcf -O /usr/local/bin/wgcf
+sudo wget -N -6 https://cdn.jsdelivr.net/gh/YG-tsj/EUserv-warp/wireguard-go -O /usr/bin/wireguard-go
 sudo chmod +x /usr/local/bin/wgcf
 sudo chmod +x /usr/bin/wireguard-go
 sudo echo | wgcf register
