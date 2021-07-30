@@ -185,14 +185,8 @@ function w646(){
 
 if [ $release = "Centos" ]
 	then
-	        sudo yum update -y
-                sudo yum install curl wget -y && yum install sudo -y
-		sudo yum install epel-release -y		
-		sudo yum install -y \
-                https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
-                sudo curl -o /etc/yum.repos.d/jdoss-wireguard-epel-7.repo \
-                https://copr.fedorainfracloud.org/coprs/jdoss/wireguard/repo/epel-7/jdoss-wireguard-epel-7.repo
-                sudo yum install wireguard-tools -y
+            red " 不支持Centos系统，请更换成Debian或Ubuntu "
+	    
 	elif [ $release = "Debian" ]
 	then
 		sudo apt update && apt install curl sudo lsb-release iptables -y
