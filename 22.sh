@@ -42,7 +42,11 @@ rred(){
 		release="Centos"
     fi
 
-
+if [ $release = "Centos" ]
+	then
+            red " 不支持Centos系统，请更换成Debian或Ubuntu "
+      exit 1
+	   fi
 bit=`uname -m`
 version=`uname -r | awk -F "-" '{print $1}'`
 main=`uname  -r | awk -F . '{print $1 }'`
