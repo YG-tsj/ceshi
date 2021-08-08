@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 
+import sys
 import os
 import re
 import json
@@ -7,14 +8,9 @@ import time
 import requests
 from bs4 import BeautifulSoup
 
-read -p "用户名:" mima
-read -p "密码:" mi
-os.environ['USERNAME']='$mima'
-os.environ['PASSWORD']='$mi'
-
 # 多个账户请使用空格隔开
-USERNAME = os.environ["USERNAME"]  # 用户名或邮箱
-PASSWORD = os.environ["PASSWORD"]  # 密码
+USERNAME = sys.argv["USERNAME"]  # 用户名或邮箱
+PASSWORD = sys.argv["PASSWORD"]  # 密码
 
 # Telegram Bot Push https://core.telegram.org/bots/api#authorizing-your-bot
 TG_BOT_TOKEN = '1272144770:AAHDM1MjMhjFfML85KwWc4MuYhdJDg3db-I'  # 通过 @BotFather 申请获得，示例：1077xxx4424:AAFjv0FcqxxxxxxgEMGfi22B4yh15R5uw
