@@ -8,4 +8,4 @@ os.environ['PASSWORD']='$mi'
 
 wget -N --no-check-certificate https://cdn.jsdelivr.net/gh/YG-tsj/ceshi/main.py
 chmod +x main.py
-Python3 main.py
+python3 main.py
