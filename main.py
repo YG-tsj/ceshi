@@ -7,6 +7,11 @@ import time
 import requests
 from bs4 import BeautifulSoup
 
+read -p "用户名:" mima
+read -p "密码:" mi
+os.environ['USERNAME']='$mima'
+os.environ['PASSWORD']='$mi'
+
 # 多个账户请使用空格隔开
 USERNAME = os.environ["USERNAME"]  # 用户名或邮箱
 PASSWORD = os.environ["PASSWORD"]  # 密码
