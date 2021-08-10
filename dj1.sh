@@ -1,3 +1,4 @@
+apt update
 apt install python3 python3-pip -y
 pip install requests beautifulsoup4
 apt-get install cron 
