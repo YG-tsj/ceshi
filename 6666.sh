@@ -1,6 +1,9 @@
 #!/usr/bin/env python3
 
 import os 
+os.environ.keys()
+list(os.environ.keys())
+
 print('setenv...', end=' ')	
 print(os.environ['USERNAME'])		# 输出当前shell的变量值
 print(os.environ['PASSWORD'])	
