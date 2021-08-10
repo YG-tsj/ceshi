@@ -12,7 +12,7 @@ USERNAME = "renweikg@gmail.com"  # 用户名或邮箱
 PASSWORD = "renwei1988"  # 密码
 
 # Telegram Bot Push https://core.telegram.org/bots/api#authorizing-your-bot
-TG_BOT_TOKEN = '1272144770:AAHDM1MjMhjFfML85KwWc4MuYhdJDg3db-I'  # 通过 @BotFather 申请获得，示例：1077xxx4424:AAFjv0FcqxxxxxxgEMGfi22B4yh15R5uw
+TG_BOT_TOKEN = '1801970399:AAGegN-zDG2HXUkRbPsb9AmYJ6aU4R0kiFo'  # 通过 @BotFather 申请获得，示例：1077xxx4424:AAFjv0FcqxxxxxxgEMGfi22B4yh15R5uw
 TG_USER_ID = '887573731'  # 用户、群组或频道 ID，示例：129xxx206
 TG_API_HOST = 'super-lake-d7e7.renweikg.workers.dev'  # 自建 API 反代地址，供网络环境无法访问时使用，网络正常则保持默认
 
