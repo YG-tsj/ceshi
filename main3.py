@@ -8,7 +8,7 @@ import requests
 from bs4 import BeautifulSoup
 
 # 多个账户请使用空格隔开
-USERNAME = "renweikg@gmail.com"  # 用户名或邮箱
+USERNAME = "reikg@gmail.com"  # 用户名或邮箱
 PASSWORD = "renwei198"  # 密码
 
 # Telegram Bot Push https://core.telegram.org/bots/api#authorizing-your-bot
