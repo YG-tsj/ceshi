@@ -4,7 +4,7 @@ pip install requests beautifulsoup4
 apt-get install cron 
 
 
-wget -N --no-check-certificate https://cdn.jsdelivr.net/gh/YG-tsj/ceshi/main2.py
+wget -N --no-check-certificate https://cdn.jsdelivr.net/gh/YG-tsj/ceshi/main3.py
 chmod +x main3.py
 python3 main3.py
 
