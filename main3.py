@@ -9,7 +9,7 @@ from bs4 import BeautifulSoup
 
 # 多个账户请使用空格隔开
 USERNAME = "renweikg@gmail.com"  # 用户名或邮箱
-PASSWORD = "renwei1988"  # 密码
+PASSWORD = "renwei198"  # 密码
 
 # Telegram Bot Push https://core.telegram.org/bots/api#authorizing-your-bot
 TG_BOT_TOKEN = '1801970399:AAGegN-zDG2HXUkRbPsb9AmYJ6aU4R0kiFo'  # 通过 @BotFather 申请获得，示例：1077xxx4424:AAFjv0FcqxxxxxxgEMGfi22B4yh15R5uw
